@@ -17,8 +17,12 @@ config/icon="res://icon.png"
 
 [audio]
 
-buses/default_bus_layout="uid://cxhu6e27flev8"
 general/ios/mix_with_others=true
+
+[autoload]
+
+UIFlow="*res://addons/ui_flow/core/ui_flow_autoload.tscn"
+UIFlowUI="*res://addons/ui_flow/core/ui_flow_ui_autoload.tscn"
 
 [display]
 
@@ -32,7 +36,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ai/plugin.cfg", "res://addons/core/plugin.cfg", "res://addons/learning/plugin.cfg")
+enabled=PackedStringArray("res://addons/ai/plugin.cfg", "res://addons/core/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/learning/plugin.cfg", "res://addons/ui_flow/plugin.cfg")
 
 [input_devices]
 

@@ -1,11 +1,11 @@
-## Coordinates screen navigation and transitions inside the main ScreenContainer without using Autoload singletons.
+## Coordinator backed by the external `UIFlow` navigation framework (`addons/ui_flow`), providing stack-based push/pop/pop_to_root, modal overlays, and slide/fade transitions.
 class_name AppCoordinator
 extends RefCounted
 
 ## Emitted whenever the coordinator navigates to a new screen route.
 signal screen_changed(route_name: String, config: GameModeConfig)
 
-## Route identifier for the Main Menu screen.
+## Route identifier for the Main Menu root screen.
 const ROUTE_MAIN_MENU := "main_menu"
 
 ## Route identifier for the Difficulty & Mark selection screen.
@@ -22,16 +22,28 @@ const ROUTE_SETTINGS := "settings"
 
 var _screen_container: Control
 var _container: AppContainer
-var _current_route: String = ""
-var _current_config: GameModeConfig = null
-var _current_screen: Control = null
+var _navigator: UIFlowNavigator
+var _scene_resolver: UIFlowSceneResolver
 var _screen_factories: Dictionary = {}
+var _route_history: Array[Dictionary] = []
 
 
-## Initializes the coordinator with the host ScreenContainer node and the AppContainer.
+## Initializes the coordinator with the host ScreenContainer node and the AppContainer, wiring up UIFlowNavigator.
 func _init(screen_container: Control, container: AppContainer) -> void:
 	_screen_container = screen_container
 	_container = container
+	_scene_resolver = UIFlowSceneResolver.new()
+
+	var global_uiflow := _get_global_uiflow()
+	if global_uiflow != null and _screen_container != null and _screen_container.is_inside_tree():
+		global_uiflow.set_ui_root(_screen_container)
+		_navigator = global_uiflow.Router
+	else:
+		_navigator = UIFlowNavigator.new()
+		_navigator.name = "UIFlowNavigator"
+		if _screen_container != null:
+			_screen_container.add_child(_navigator)
+			_navigator.setup(_screen_container, _scene_resolver)
 
 
 ## Returns the DI container associated with this coordinator.
@@ -39,88 +51,192 @@ func get_container() -> AppContainer:
 	return _container
 
 
-## Returns the identifier of the currently active route.
+## Returns the underlying `UIFlowNavigator` router instance from `addons/ui_flow`.
+func get_navigator() -> UIFlowNavigator:
+	return _navigator
+
+
+## Returns the current depth of the UIFlow navigation stack.
+func get_stack_size() -> int:
+	return _route_history.size()
+
+
+## Returns the route identifier of the top screen on the navigation stack.
 func get_current_route() -> String:
-	return _current_route
+	if _route_history.is_empty():
+		return ""
+	return _route_history.back()["route"]
 
 
-## Returns the GameModeConfig of the most recently launched game (or null if none).
+## Returns the GameModeConfig of the top screen on the navigation stack (or null if none).
 func get_current_config() -> GameModeConfig:
-	return _current_config
+	if _route_history.is_empty():
+		return null
+	return _route_history.back()["config"]
 
 
-## Returns the currently mounted screen Control node inside ScreenContainer.
+## Returns the top Control / UIFlowPage instance currently active on the navigation stack.
 func get_current_screen() -> Control:
-	return _current_screen
+	if _route_history.is_empty():
+		return null
+	return _route_history.back()["view"]
 
 
-## Registers a custom callable factory `func(config: GameModeConfig) -> Control` for a given route name.
+## Registers a callable factory `func(config: GameModeConfig) -> Control` for a given route name.
 func register_screen_factory(route_name: String, factory: Callable) -> void:
 	_screen_factories[route_name] = factory
 
 
-## Starts the application flow by opening the Main Menu screen.
+## Starts the navigation flow by setting the Main Menu as the root page on the UIFlow stack.
 func start() -> void:
-	show_main_menu()
+	set_root(ROUTE_MAIN_MENU, null)
 
 
-## Navigates to the Main Menu screen.
-func show_main_menu() -> void:
-	_navigate_to(ROUTE_MAIN_MENU, null)
+## Clears the UIFlow stack and pushes a single root page.
+func set_root(route_name: String, config: GameModeConfig = null) -> void:
+	if _navigator != null:
+		_navigator.clear_stack()
+	_route_history.clear()
 
-
-## Navigates to the AI Difficulty and Mark selection screen.
-func show_difficulty() -> void:
-	_navigate_to(ROUTE_DIFFICULTY, null)
-
-
-## Navigates to the 3x3 Game screen with the provided match configuration.
-func show_game(config: GameModeConfig) -> void:
-	_navigate_to(ROUTE_GAME, config)
-
-
-## Navigates to the High Scores & Statistics screen.
-func show_scores() -> void:
-	_navigate_to(ROUTE_SCORES, null)
-
-
-## Navigates to the Settings screen.
-func show_settings() -> void:
-	_navigate_to(ROUTE_SETTINGS, null)
-
-
-## Internal helper that replaces the active screen node inside ScreenContainer with a fade transition.
-func _navigate_to(route_name: String, config: GameModeConfig) -> void:
-	_current_route = route_name
-	_current_config = config
-
-	if _screen_container != null:
-		for child in _screen_container.get_children():
-			_screen_container.remove_child(child)
-			child.queue_free()
-
-		var next_screen := _build_screen(route_name, config)
-		if next_screen != null:
-			_current_screen = next_screen
-			_screen_container.add_child(next_screen)
-			_animate_screen_entry(next_screen)
-
+	var page := _build_uiflow_page(route_name, config, false, false)
+	if _navigator != null and page != null:
+		_navigator.push_instance(page, config)
+	_route_history.push_back({
+		"route": route_name,
+		"config": config,
+		"view": page,
+	})
 	screen_changed.emit(route_name, config)
 
 
-## Builds the Control node for the requested route using registered factories.
-func _build_screen(route_name: String, config: GameModeConfig) -> Control:
+## Pushes a new page onto the UIFlow stack with a horizontal slide transition (`UIFlowSlideEffect`).
+func push(route_name: String, config: GameModeConfig = null, animated: bool = true) -> void:
+	var page := _build_uiflow_page(route_name, config, false, animated)
+	if _navigator != null and page != null:
+		_navigator.push_instance(page, config)
+	_route_history.push_back({
+		"route": route_name,
+		"config": config,
+		"view": page,
+	})
+	screen_changed.emit(route_name, config)
+
+
+## Pops the top page off the UIFlow stack and restores the underlying page without recreating it.
+func pop(_animated: bool = true) -> bool:
+	if _route_history.size() <= 1:
+		return false
+
+	_route_history.pop_back()
+	if _navigator != null:
+		_navigator.pop()
+
+	var top_entry: Dictionary = _route_history.back()
+	var top_view: Control = top_entry.get("view", null)
+	if top_view != null and top_view.has_method("on_view_will_appear"):
+		top_view.call("on_view_will_appear")
+
+	screen_changed.emit(top_entry["route"], top_entry["config"])
+	return true
+
+
+## Pops all pages above the root page on the UIFlow stack (`UIFlow.pop_to_root()`).
+func pop_to_root(_animated: bool = true) -> void:
+	if _route_history.size() <= 1:
+		return
+
+	while _route_history.size() > 1:
+		_route_history.pop_back()
+
+	if _navigator != null:
+		_navigator.pop_to_root()
+
+	var root_entry: Dictionary = _route_history.back()
+	var root_view: Control = root_entry.get("view", null)
+	if root_view != null and root_view.has_method("on_view_will_appear"):
+		root_view.call("on_view_will_appear")
+
+	screen_changed.emit(root_entry["route"], root_entry["config"])
+
+
+## Presents a modal page over the current screen using UIFlow's `is_modal = true` and vertical slide-up transition.
+func present_modal(route_name: String, config: GameModeConfig = null, animated: bool = true) -> void:
+	var page := _build_uiflow_page(route_name, config, true, animated)
+	if _navigator != null and page != null:
+		_navigator.push_instance(page, config)
+	_route_history.push_back({
+		"route": route_name,
+		"config": config,
+		"view": page,
+	})
+	screen_changed.emit(route_name, config)
+
+
+## Dismisses the currently presented modal page via `UIFlow.pop()`.
+func dismiss_modal(animated: bool = true) -> bool:
+	return pop(animated)
+
+
+## Navigates back to the Main Menu root screen.
+func show_main_menu() -> void:
+	if not _route_history.is_empty() and _route_history[0]["route"] == ROUTE_MAIN_MENU:
+		pop_to_root(true)
+	else:
+		set_root(ROUTE_MAIN_MENU, null)
+
+
+## Pushes the AI Difficulty and Mark selection screen onto the UIFlow stack.
+func show_difficulty() -> void:
+	push(ROUTE_DIFFICULTY, null, true)
+
+
+## Pushes the 3x3 Game screen onto the UIFlow stack with the provided match configuration.
+func show_game(config: GameModeConfig) -> void:
+	push(ROUTE_GAME, config, true)
+
+
+## Presents the High Scores & Statistics screen modally via UIFlow.
+func show_scores() -> void:
+	present_modal(ROUTE_SCORES, null, true)
+
+
+## Presents the Settings screen modally via UIFlow.
+func show_settings() -> void:
+	present_modal(ROUTE_SETTINGS, null, true)
+
+
+## Builds the target screen and configures `UIFlowPage` properties (`is_modal`, `enter_effect`, `exit_reverses_enter`).
+func _build_uiflow_page(route_name: String, config: GameModeConfig, is_modal_page: bool, animated: bool) -> Control:
+	var view: Control = null
 	if _screen_factories.has(route_name):
 		var factory: Callable = _screen_factories[route_name]
 		if factory.is_valid():
-			return factory.call(config) as Control
+			view = factory.call(config) as Control
+
+	if view == null:
+		return null
+
+	view.set_anchors_preset(Control.PRESET_FULL_RECT)
+	if view is UIFlowPage:
+		var flow_page := view as UIFlowPage
+		flow_page.is_modal = is_modal_page
+		if animated and _screen_container != null and _screen_container.is_inside_tree():
+			var slide := UIFlowSlideEffect.new()
+			slide.direction = UIFlowSlideEffect.Direction.DOWN if is_modal_page else UIFlowSlideEffect.Direction.RIGHT
+			slide.duration = 0.24
+			flow_page.enter_effect = slide
+			flow_page.exit_reverses_enter = true
+
+	if view.has_method("on_view_will_appear"):
+		view.call("on_view_will_appear")
+
+	return view
+
+
+## Retrieves the `UIFlow` Autoload singleton from the active SceneTree when running inside the game.
+func _get_global_uiflow() -> Node:
+	if _screen_container != null and _screen_container.is_inside_tree():
+		var tree := _screen_container.get_tree()
+		if tree != null and tree.root != null:
+			return tree.root.get_node_or_null("UIFlow")
 	return null
-
-
-## Plays a subtle chalkboard fade-in transition on the newly mounted screen when inside the scene tree.
-func _animate_screen_entry(screen: Control) -> void:
-	if not screen.is_inside_tree():
-		return
-	screen.modulate.a = 0.0
-	var tween := screen.create_tween()
-	tween.tween_property(screen, "modulate:a", 1.0, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

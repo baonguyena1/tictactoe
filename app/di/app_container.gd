@@ -45,9 +45,9 @@ func make_move_strategy(difficulty: Domain.Difficulty, seed_value: int = -1) -> 
 	return MinimaxAI.new(difficulty, seed_value)
 
 
-## Returns the current Self-Learning AI skill percentage in the range [0.0, 100.0].
-func get_learning_skill_percent() -> float:
-	return learning_ai.get_skill_level_percent()
+## Returns the current Self-Learning AI skill percentage in the range [0, 100].
+func get_learning_skill_percent() -> int:
+	return learning_ai.skill_percent()
 
 
 ## Resets all learned MENACE weights in memory and on disk.

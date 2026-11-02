@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://chvhbv1yor2ei"]
+[gd_scene format=3 uid="uid://chvhbv1yor2ei"]
 
-[ext_resource type="Script" path="res://app/app_root.gd" id="1_approot"]
+[ext_resource type="Script" uid="uid://drohtp6cylk5r" path="res://app/app_root.gd" id="1_approot"]
 
 [node name="AppRoot" type="Control" unique_id=697725447]
 layout_mode = 3
