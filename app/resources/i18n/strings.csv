@@ -1,0 +1,65 @@
+keys,en,vi
+APP_SUBTITLE_CHALK,Chalkboard Edition,Bảng Cờ Phấn Trắng
+APP_SUBTITLE_PAPER,Vintage Notebook,Sổ Tay Giấy Cũ
+APP_TITLE,Tic · Tac · Toe,Tic · Tac · Toe
+APP_EDITION_CHALK,Hand-drawn Chalk · 3×3,Nét phấn vẽ tay · 3×3
+APP_EDITION_PAPER,Old Paper Edition · 3×3,Ấn bản giấy cũ · 3×3
+MENU_PLAY_AI,Play vs AI,Chơi với máy
+MENU_TWO_PLAYERS,Two Players,2 người chơi
+MENU_SCORES,High Scores,Bảng điểm
+MENU_SETTINGS,Settings,Cài đặt
+AI_SKILL_FOOTER,AI Skill Level: {p}%,Trình độ máy học: {p}%
+BTN_BACK,← Back,← Quay lại
+BTN_MENU,← Menu,← Menu
+DIFF_TITLE,Choose Difficulty,Chọn độ khó
+DIFF_YOU_PLAY,You play as,Bạn cầm quân
+DIFF_FIRST,(First),(Đi trước)
+DIFF_SECOND,(Second),(Đi sau)
+DIFF_EASY,Easy,Dễ
+DIFF_EASY_DESC,Random moves with occasional blocks,Máy đi ngẫu nhiên và đôi khi chặn
+DIFF_MEDIUM,Medium,Vừa
+DIFF_MEDIUM_DESC,Blocks threats & prefers center/corners,Biết chặn và ưu tiên ô giữa / góc
+DIFF_LEARNING,Self-Learning (MENACE),Máy tự học (MENACE)
+DIFF_LEARNING_DESC,Learns and adapts after every match,Càng chơi nhiều càng thông minh
+DIFF_HARD,Hard,Khó
+DIFF_HARD_DESC,Minimax with 25% slight slip,Minimax nhưng 25% sơ hở nhẹ
+DIFF_UNBEATABLE,Unbeatable,Bất bại
+DIFF_UNBEATABLE_DESC,Perfect Minimax · Draw rewards points!,Minimax hoàn hảo · Hòa đã có điểm!
+GAME_YOU_X,You ({m}),Bạn ({m})
+GAME_AI_O,AI ({m}),Máy ({m})
+GAME_PLAYER_X,Player X,Người chơi X
+GAME_PLAYER_O,Player O,Người chơi O
+GAME_DRAWS,Draws,Hòa
+GAME_YOUR_TURN,IT'S YOUR TURN,LƯỢT CỦA BẠN ({m})
+GAME_AI_THINKING,AI IS THINKING...,MÁY ĐANG NGHĨ...
+GAME_TURN_MARK,{m}'S TURN,LƯỢT CỦA {m}
+GAME_TAP_HINT_CHALK,Tap an empty cell to draw with chalk,Chạm vào ô trống để vẽ phấn
+GAME_TAP_HINT_PAPER,Tap an empty cell to draw with ink,Chạm vào ô trống để vẽ bút mực
+RESULT_MATCH_FINISHED,Match Finished,Kết thúc ván
+RESULT_YOU_WIN,YOU WIN!,BẠN THẮNG!
+RESULT_AI_WINS,AI WINS!,MÁY THẮNG!
+RESULT_MARK_WINS,{m} WINS!,{m} THẮNG!
+RESULT_DRAW,IT'S A DRAW!,HÒA NHAU!
+RESULT_POINTS,+{pts} points (×{mult}),+{pts} điểm (×{mult})
+RESULT_PLAY_AGAIN,Play Again,Chơi lại
+SCORES_TITLE,High Scores,Sổ Ghi Điểm
+SCORES_TOTAL,Total Score,Tổng điểm tích lũy
+SCORES_BEST_GAME,Best Match,Ván cao nhất
+SCORES_BEST_STREAK,Best Streak,Chuỗi thắng kỷ lục
+SCORES_BY_DIFF,Record by Difficulty (W / D / L),Thống kê theo cấp độ (Thắng / Hòa / Thua)
+SET_TITLE,Settings,Cài Đặt
+SET_SKIN,Theme Skin,Giao diện
+SET_SKIN_CHALK,Chalkboard,Bảng Phấn
+SET_SKIN_PAPER,Old Paper,Giấy Cũ
+SET_FONT,Font Style,Kiểu chữ
+SET_FONT_ROUNDED,Rounded,Tròn trịa
+SET_FONT_HAND,Handwritten,Viết tay
+SET_FONT_SERIF,Classic Serif,Cổ điển
+SET_MUSIC,Background Music,Nhạc nền
+SET_SFX,Sound Effects,Hiệu ứng âm thanh
+SET_HAPTICS,Vibration,Rung khi đánh
+SET_MOTION,Animated Background,Nền động Menu
+SET_LANGUAGE,Language,Ngôn ngữ
+SET_LANG_VI,Tiếng Việt,Tiếng Việt
+SET_LANG_EN,English,English
+SET_RESET_AI,Reset Self-Learning AI Memory,Xóa trí nhớ Máy tự học
