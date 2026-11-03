@@ -9,3 +9,5 @@ func _plugging() -> void:
 	plug("indieshade/uiflow", {"include": ["addons/ui_flow"]})
 	# GUT (Godot Unit Test): XCTest-style unit testing framework with bottom panel runner in Godot Editor
 	plug("bitwes/Gut", {"include": ["addons/gut"]})
+	# Godot AI: MCP server and AI tools for Godot Editor live integration
+	plug("hi-godot/godot-ai", {"include": ["plugin/addons/godot_ai"]})

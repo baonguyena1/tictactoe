@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dps7bkv6ny12m"]
+[gd_scene load_steps=11 format=3 uid="uid://dps7bkv6ny12m"]
 
 [ext_resource type="Script" path="res://app/presentation/game/game_view.gd" id="1_gameview"]
 [ext_resource type="PackedScene" path="res://app/presentation/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" path="res://app/resources/textures/board.png" id="7_board"]
 [ext_resource type="Texture2D" path="res://app/resources/textures/win_frame.png" id="8_winframe"]
 [ext_resource type="Texture2D" path="res://app/resources/textures/trophy_laurel.png" id="9_trophylaurel"]
+[ext_resource type="Material" uid="uid://b23v8liquidglas" path="res://app/presentation/shared/liquid_glass_material.tres" id="10_liquidglass"]
 
 [node name="GameView" type="Control"]
 layout_mode = 3
@@ -374,6 +375,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Dimmer" type="ColorRect" parent="ResultOverlay"]
+material = ExtResource("10_liquidglass")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
