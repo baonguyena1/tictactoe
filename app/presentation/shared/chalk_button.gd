@@ -1,3 +1,4 @@
+@tool
 ## Reusable chalkboard button featuring a hand-drawn frame texture, optional left icon, slanted chalk label, right badge text, press bounce animation, and tap SFX.
 class_name ChalkButton
 extends Control
@@ -21,7 +22,7 @@ signal pressed
 @export var text_color: Color = ChalkTheme.CHALK_WHITE
 
 var _audio_service: AudioService = null
-var _frame_rect: TextureRect
+var _frame_rect: NinePatchRect
 var _icon_rect: TextureRect
 var _title_label: Label
 var _badge_label: Label
@@ -156,56 +157,71 @@ func _ensure_children() -> void:
 	if _frame_rect != null:
 		return
 
-	_frame_rect = TextureRect.new()
-	_frame_rect.name = "FrameRect"
-	_frame_rect.texture = load(ChalkTheme.TEX_BUTTON_FRAME) as Texture2D
-	_frame_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_frame_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	_frame_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_frame_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_frame_rect)
+	# Support nodes already existing from scene (.tscn)
+	_frame_rect = get_node_or_null("FrameRect") as NinePatchRect
+	if _frame_rect == null:
+		_frame_rect = NinePatchRect.new()
+		_frame_rect.name = "FrameRect"
+		_frame_rect.texture = load(ChalkTheme.TEX_BUTTON_FRAME) as Texture2D
+		_frame_rect.patch_margin_left = 32
+		_frame_rect.patch_margin_right = 32
+		_frame_rect.patch_margin_top = 16
+		_frame_rect.patch_margin_bottom = 16
+		_frame_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_frame_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(_frame_rect)
 
-	var margin := MarginContainer.new()
-	margin.name = "ContentMargin"
-	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	margin.add_theme_constant_override("margin_left", 36)
-	margin.add_theme_constant_override("margin_right", 36)
-	margin.add_theme_constant_override("margin_top", 10)
-	margin.add_theme_constant_override("margin_bottom", 10)
-	add_child(margin)
+	var margin := get_node_or_null("ContentMargin") as MarginContainer
+	if margin == null:
+		margin = MarginContainer.new()
+		margin.name = "ContentMargin"
+		margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+		margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		margin.add_theme_constant_override("margin_left", 36)
+		margin.add_theme_constant_override("margin_right", 36)
+		margin.add_theme_constant_override("margin_top", 10)
+		margin.add_theme_constant_override("margin_bottom", 10)
+		add_child(margin)
 
-	var hbox := HBoxContainer.new()
-	hbox.name = "ContentRow"
-	hbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	hbox.add_theme_constant_override("separation", 16)
-	margin.add_child(hbox)
+	var hbox := margin.get_node_or_null("ContentRow") as HBoxContainer
+	if hbox == null:
+		hbox = HBoxContainer.new()
+		hbox.name = "ContentRow"
+		hbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		hbox.add_theme_constant_override("separation", 16)
+		margin.add_child(hbox)
 
-	_icon_rect = TextureRect.new()
-	_icon_rect.name = "IconRect"
-	_icon_rect.custom_minimum_size = Vector2(40.0, 40.0)
-	_icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_icon_rect.visible = false
-	hbox.add_child(_icon_rect)
+	_icon_rect = hbox.get_node_or_null("IconRect") as TextureRect
+	if _icon_rect == null:
+		_icon_rect = TextureRect.new()
+		_icon_rect.name = "IconRect"
+		_icon_rect.custom_minimum_size = Vector2(40.0, 40.0)
+		_icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		_icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		_icon_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_icon_rect.visible = false
+		hbox.add_child(_icon_rect)
 
-	_title_label = Label.new()
-	_title_label.name = "TitleLabel"
-	_title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_title_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	hbox.add_child(_title_label)
+	_title_label = hbox.get_node_or_null("TitleLabel") as Label
+	if _title_label == null:
+		_title_label = Label.new()
+		_title_label.name = "TitleLabel"
+		_title_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		_title_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		hbox.add_child(_title_label)
 
-	_badge_label = Label.new()
-	_badge_label.name = "BadgeLabel"
-	_badge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_badge_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_badge_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_badge_label.visible = false
-	hbox.add_child(_badge_label)
+	_badge_label = hbox.get_node_or_null("BadgeLabel") as Label
+	if _badge_label == null:
+		_badge_label = Label.new()
+		_badge_label.name = "BadgeLabel"
+		_badge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		_badge_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		_badge_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_badge_label.visible = false
+		hbox.add_child(_badge_label)
 
 
 ## Shrinks the button slightly when pressed down.

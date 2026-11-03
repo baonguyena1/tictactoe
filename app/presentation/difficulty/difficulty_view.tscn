@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3qg1f8vxj19k"]
+
+[ext_resource type="Script" path="res://app/presentation/difficulty/difficulty_view.gd" id="1_diffview"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_button.tscn" id="3_chalkbtn"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/icon_exit.png" id="4_iconexit"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_banner.tscn" id="5_chalkbanner"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/mark_x_yellow.png" id="6_markx"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/mark_o.png" id="7_marko"]
+
+[node name="DifficultyView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_diffview")
+
+[node name="AnimatedChalkBg" parent="." instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+
+[node name="SafeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 32
+
+[node name="MainColumn" type="VBoxContainer" parent="SafeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TopRow" type="HBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+
+[node name="BtnBack" parent="SafeMargin/MainColumn/TopRow" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 68)
+layout_mode = 2
+text_key = "BTN_BACK"
+icon_texture = ExtResource("4_iconexit")
+font_size = 26
+
+[node name="TitleBanner" parent="SafeMargin/MainColumn" instance=ExtResource("5_chalkbanner")]
+custom_minimum_size = Vector2(520, 74)
+layout_mode = 2
+text_key = "DIFF_TITLE"
+
+[node name="YouPlayLabel" type="Label" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MarkRow" type="HBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="BtnMarkX" parent="SafeMargin/MainColumn/MarkRow" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(300, 78)
+layout_mode = 2
+text_key = "X"
+icon_texture = ExtResource("6_markx")
+font_size = 26
+
+[node name="BtnMarkO" parent="SafeMargin/MainColumn/MarkRow" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(300, 78)
+layout_mode = 2
+text_key = "O"
+icon_texture = ExtResource("7_marko")
+font_size = 26
+
+[node name="ListBox" type="VBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+theme_override_constants/separation = 6
+
+[node name="ItemEasy" type="VBoxContainer" parent="SafeMargin/MainColumn/ListBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BtnEasy" parent="SafeMargin/MainColumn/ListBox/ItemEasy" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(580, 78)
+layout_mode = 2
+text_key = "DIFF_EASY"
+badge_text = "×1"
+font_size = 30
+
+[node name="DescEasy" type="Label" parent="SafeMargin/MainColumn/ListBox/ItemEasy"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ItemMedium" type="VBoxContainer" parent="SafeMargin/MainColumn/ListBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BtnMedium" parent="SafeMargin/MainColumn/ListBox/ItemMedium" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(580, 78)
+layout_mode = 2
+text_key = "DIFF_MEDIUM"
+badge_text = "×2"
+font_size = 30
+
+[node name="DescMedium" type="Label" parent="SafeMargin/MainColumn/ListBox/ItemMedium"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ItemLearning" type="VBoxContainer" parent="SafeMargin/MainColumn/ListBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BtnLearning" parent="SafeMargin/MainColumn/ListBox/ItemLearning" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(580, 78)
+layout_mode = 2
+text_key = "DIFF_LEARNING"
+badge_text = "×3"
+font_size = 30
+
+[node name="DescLearning" type="Label" parent="SafeMargin/MainColumn/ListBox/ItemLearning"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ItemHard" type="VBoxContainer" parent="SafeMargin/MainColumn/ListBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BtnHard" parent="SafeMargin/MainColumn/ListBox/ItemHard" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(580, 78)
+layout_mode = 2
+text_key = "DIFF_HARD"
+badge_text = "×4"
+font_size = 30
+
+[node name="DescHard" type="Label" parent="SafeMargin/MainColumn/ListBox/ItemHard"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ItemUnbeatable" type="VBoxContainer" parent="SafeMargin/MainColumn/ListBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BtnUnbeatable" parent="SafeMargin/MainColumn/ListBox/ItemUnbeatable" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(580, 78)
+layout_mode = 2
+text_key = "DIFF_UNBEATABLE"
+badge_text = "×8"
+font_size = 30
+
+[node name="DescUnbeatable" type="Label" parent="SafeMargin/MainColumn/ListBox/ItemUnbeatable"]
+layout_mode = 2
+horizontal_alignment = 1

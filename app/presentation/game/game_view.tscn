@@ -1,0 +1,449 @@
+[gd_scene load_steps=10 format=3 uid="uid://dps7bkv6ny12m"]
+
+[ext_resource type="Script" path="res://app/presentation/game/game_view.gd" id="1_gameview"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_button.tscn" id="3_chalkbtn"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/icon_exit.png" id="4_iconexit"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/icon_reset.png" id="5_iconreset"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_banner.tscn" id="6_chalkbanner"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/board.png" id="7_board"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/win_frame.png" id="8_winframe"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/trophy_laurel.png" id="9_trophylaurel"]
+
+[node name="GameView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gameview")
+
+[node name="AnimatedChalkBg" parent="." instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+
+[node name="SafeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="MainColumn" type="VBoxContainer" parent="SafeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TopBar" type="HBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnMenu" parent="SafeMargin/MainColumn/TopBar" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 68)
+layout_mode = 2
+text_key = "BTN_MENU"
+icon_texture = ExtResource("4_iconexit")
+font_size = 26
+
+[node name="TopSpacer" type="Control" parent="SafeMargin/MainColumn/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnReset" parent="SafeMargin/MainColumn/TopBar" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(230, 68)
+layout_mode = 2
+text_key = "RESULT_PLAY_AGAIN"
+icon_texture = ExtResource("5_iconreset")
+font_size = 26
+
+[node name="ScoreRow" type="HBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 36
+
+[node name="P1Col" type="VBoxContainer" parent="SafeMargin/MainColumn/ScoreRow"]
+layout_mode = 2
+
+[node name="P1TitleLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/P1Col"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="P1ScoreLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/P1Col"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DrawsCol" type="VBoxContainer" parent="SafeMargin/MainColumn/ScoreRow"]
+layout_mode = 2
+
+[node name="DrawsTitleLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/DrawsCol"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="DrawsScoreLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/DrawsCol"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="P2Col" type="VBoxContainer" parent="SafeMargin/MainColumn/ScoreRow"]
+layout_mode = 2
+
+[node name="P2TitleLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/P2Col"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="P2ScoreLabel" type="Label" parent="SafeMargin/MainColumn/ScoreRow/P2Col"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="TurnBanner" parent="SafeMargin/MainColumn" instance=ExtResource("6_chalkbanner")]
+custom_minimum_size = Vector2(520, 74)
+layout_mode = 2
+text_key = "GAME_YOUR_TURN"
+
+[node name="BoardCenter" type="CenterContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BoardArea" type="Control" parent="SafeMargin/MainColumn/BoardCenter"]
+custom_minimum_size = Vector2(580, 580)
+layout_mode = 2
+
+[node name="BoardGridTexture" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_board")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_0" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 188.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_0" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_0"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_1" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_1" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_2" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 16.0
+offset_right = 564.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_2" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_3" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 204.0
+offset_right = 188.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_3" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_4" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 204.0
+offset_right = 376.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_4" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_5" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 204.0
+offset_right = 564.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_5" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_5"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_6" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 392.0
+offset_right = 188.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_6" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_6"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_7" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 392.0
+offset_right = 376.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_7" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_7"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_8" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 392.0
+offset_right = 564.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_8" type="TextureRect" parent="SafeMargin/MainColumn/BoardCenter/BoardArea/Cell_8"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WinningLineLayer" type="Control" parent="SafeMargin/MainColumn/BoardCenter/BoardArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ResultOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.05, 0.04, 0.82)
+
+[node name="Center" type="CenterContainer" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="Control" parent="ResultOverlay/Center"]
+custom_minimum_size = Vector2(620, 680)
+layout_mode = 2
+
+[node name="FrameRect" type="TextureRect" parent="ResultOverlay/Center/Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_winframe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardMargin" type="MarginContainer" parent="ResultOverlay/Center/Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 64
+
+[node name="CardVBox" type="VBoxContainer" parent="ResultOverlay/Center/Card/CardMargin"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 18
+
+[node name="TrophyRect" type="TextureRect" parent="ResultOverlay/Center/Card/CardMargin/CardVBox"]
+custom_minimum_size = Vector2(180, 140)
+layout_mode = 2
+texture = ExtResource("9_trophylaurel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResultTitleLabel" type="Label" parent="ResultOverlay/Center/Card/CardMargin/CardVBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ResultPointsLabel" type="Label" parent="ResultOverlay/Center/Card/CardMargin/CardVBox"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BtnPlayAgain" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(460, 84)
+layout_mode = 2
+text_key = "RESULT_PLAY_AGAIN"
+
+[node name="BtnResultMenu" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(460, 84)
+layout_mode = 2
+text_key = "BTN_MENU"
+icon_texture = ExtResource("4_iconexit")

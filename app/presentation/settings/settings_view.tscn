@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6q8y7m2f4k5a"]
+
+[ext_resource type="Script" path="res://app/presentation/settings/settings_view.gd" id="1_settingsview"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_button.tscn" id="3_chalkbtn"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/icon_close.png" id="4_iconclose"]
+[ext_resource type="PackedScene" path="res://app/presentation/shared/chalk_banner.tscn" id="5_chalkbanner"]
+[ext_resource type="Texture2D" path="res://app/resources/textures/icon_reset.png" id="6_iconreset"]
+
+[node name="SettingsView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settingsview")
+
+[node name="AnimatedChalkBg" parent="." instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+
+[node name="SafeMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="MainColumn" type="VBoxContainer" parent="SafeMargin"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TopRow" type="HBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+
+[node name="BtnBack" parent="SafeMargin/MainColumn/TopRow" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 68)
+layout_mode = 2
+text_key = "BTN_BACK"
+icon_texture = ExtResource("4_iconclose")
+font_size = 26
+
+[node name="TitleBanner" parent="SafeMargin/MainColumn" instance=ExtResource("5_chalkbanner")]
+custom_minimum_size = Vector2(520, 74)
+layout_mode = 2
+text_key = "SET_TITLE"
+
+[node name="OptionsBox" type="VBoxContainer" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+theme_override_constants/separation = 18
+
+[node name="BtnMusic" parent="SafeMargin/MainColumn/OptionsBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(560, 86)
+layout_mode = 2
+text_key = "SET_MUSIC"
+
+[node name="BtnSFX" parent="SafeMargin/MainColumn/OptionsBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(560, 86)
+layout_mode = 2
+text_key = "SET_SFX"
+
+[node name="BtnHaptics" parent="SafeMargin/MainColumn/OptionsBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(560, 86)
+layout_mode = 2
+text_key = "SET_HAPTICS"
+
+[node name="BtnLanguage" parent="SafeMargin/MainColumn/OptionsBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(560, 86)
+layout_mode = 2
+text_key = "SET_LANGUAGE"
+
+[node name="BtnResetAI" parent="SafeMargin/MainColumn/OptionsBox" instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(560, 86)
+layout_mode = 2
+text_key = "SET_RESET_AI"
+icon_texture = ExtResource("6_iconreset")
+
+[node name="AISkillLabel" type="Label" parent="SafeMargin/MainColumn"]
+layout_mode = 2
+horizontal_alignment = 1

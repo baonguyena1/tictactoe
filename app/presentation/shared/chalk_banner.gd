@@ -1,3 +1,4 @@
+@tool
 ## Reusable chalkboard status ribbon banner (`banner_turn.png`) with centered handwritten chalk text.
 class_name ChalkBanner
 extends Control

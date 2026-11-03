@@ -1,3 +1,4 @@
+@tool
 ## Full-screen chalkboard background with animated corner chalk doodles (X, O, #) and floating chalk dust particles.
 class_name AnimatedChalkBg
 extends Control

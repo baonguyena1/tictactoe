@@ -79,7 +79,8 @@ func test_app_coordinator_uiflow_stack() -> void:
 	var scores := LocalScoreRepository.new(TEST_SCORES_PATH)
 	var weights := LocalWeightStore.new(TEST_WEIGHTS_PATH)
 	var container := AppContainer.new(null, settings, scores, weights)
-	var coordinator := AppCoordinator.new(screen_container, container)
+	var coordinator := AppCoordinator.new(screen_container, container, false)
+	coordinator.animations_enabled = false
 
 	var creation_counts := {}
 	for route in [

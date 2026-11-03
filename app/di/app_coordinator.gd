@@ -28,13 +28,17 @@ var _screen_factories: Dictionary = {}
 var _route_history: Array[Dictionary] = []
 
 
+## Flag that enables or disables slide transition animations (set to false in synchronous unit tests).
+var animations_enabled: bool = true
+
+
 ## Initializes the coordinator with the host ScreenContainer node and the AppContainer, wiring up UIFlowNavigator.
-func _init(screen_container: Control, container: AppContainer) -> void:
+func _init(screen_container: Control, container: AppContainer, p_use_global_uiflow: bool = true) -> void:
 	_screen_container = screen_container
 	_container = container
 	_scene_resolver = UIFlowSceneResolver.new()
 
-	var global_uiflow := _get_global_uiflow()
+	var global_uiflow := _get_global_uiflow() if p_use_global_uiflow else null
 	if global_uiflow != null and _screen_container != null and _screen_container.is_inside_tree():
 		global_uiflow.set_ui_root(_screen_container)
 		_navigator = global_uiflow.Router
@@ -177,6 +181,11 @@ func dismiss_modal(animated: bool = true) -> bool:
 	return pop(animated)
 
 
+## Pops the current screen and returns to the previous screen on the navigation stack (Type-Safe alias for `pop`).
+func go_back(animated: bool = true) -> bool:
+	return pop(animated)
+
+
 ## Navigates back to the Main Menu root screen.
 func show_main_menu() -> void:
 	if not _route_history.is_empty() and _route_history[0]["route"] == ROUTE_MAIN_MENU:
@@ -188,6 +197,18 @@ func show_main_menu() -> void:
 ## Pushes the AI Difficulty and Mark selection screen onto the UIFlow stack.
 func show_difficulty() -> void:
 	push(ROUTE_DIFFICULTY, null, true)
+
+
+## Pushes the 3x3 Game screen configured for a Player vs AI match with strongly-typed parameters.
+func show_game_vs_ai(difficulty: Domain.Difficulty, player_mark: Domain.Mark = Domain.Mark.X) -> void:
+	var config := GameModeConfig.vs_ai(difficulty, player_mark)
+	push(ROUTE_GAME, config, true)
+
+
+## Pushes the 3x3 Game screen configured for a 2-Player local pass-and-play match.
+func show_game_two_players() -> void:
+	var config := GameModeConfig.two_players()
+	push(ROUTE_GAME, config, true)
 
 
 ## Pushes the 3x3 Game screen onto the UIFlow stack with the provided match configuration.
@@ -220,7 +241,7 @@ func _build_uiflow_page(route_name: String, config: GameModeConfig, is_modal_pag
 	if view is UIFlowPage:
 		var flow_page := view as UIFlowPage
 		flow_page.is_modal = is_modal_page
-		if animated and _screen_container != null and _screen_container.is_inside_tree():
+		if animated and animations_enabled and _screen_container != null and _screen_container.is_inside_tree():
 			var slide := UIFlowSlideEffect.new()
 			slide.direction = UIFlowSlideEffect.Direction.DOWN if is_modal_page else UIFlowSlideEffect.Direction.RIGHT
 			slide.duration = 0.24
