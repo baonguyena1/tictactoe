@@ -35,7 +35,7 @@ func _make_test_container() -> AppContainer:
 func _make_test_coordinator(screen_container: Control, container: AppContainer) -> AppCoordinator:
 	var coordinator := AppCoordinator.new(screen_container, container, false)
 	coordinator.animations_enabled = false
-	AppRoot.register_default_routes(coordinator, container)
+	MainScene.register_default_routes(coordinator, container)
 	return coordinator
 
 
@@ -184,7 +184,7 @@ func test_game_view_scene_interaction() -> void:
 	add_child_autofree(screen_container)
 	var coordinator := _make_test_coordinator(screen_container, container)
 
-	var scene := preload("res://app/presentation/game/game_view.tscn") as PackedScene
+	var scene := preload("res://scenes/game/game_view.tscn") as PackedScene
 	var view := scene.instantiate() as GameView
 	view.animations_enabled = false
 	var vm := GameViewModel.new(container, coordinator, GameModeConfig.two_players())

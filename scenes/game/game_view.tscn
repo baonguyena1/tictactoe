@@ -1,0 +1,493 @@
+[gd_scene format=3 uid="uid://dps7bkv6ny12m"]
+
+[ext_resource type="Script" uid="uid://co8w52ykpyxma" path="res://scenes/game/game_view.gd" id="1_gameview"]
+[ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="3_chalkbtn"]
+[ext_resource type="Texture2D" uid="uid://drvn6onnj4eu5" path="res://resources/textures/icon_exit.png" id="4_iconexit"]
+[ext_resource type="Texture2D" uid="uid://bwxguggdujde8" path="res://resources/textures/icon_reset.png" id="5_iconreset"]
+[ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="6_chalkbanner"]
+[ext_resource type="Texture2D" uid="uid://bq4u53100uueq" path="res://resources/textures/board.png" id="7_board"]
+[ext_resource type="Texture2D" uid="uid://b2ud2qur0oiyu" path="res://resources/textures/win_frame.png" id="8_winframe"]
+[ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="9_trophylaurel"]
+[ext_resource type="Material" uid="uid://eb5l1tg4gg1s" path="res://scenes/shared/liquid_glass_material.tres" id="10_liquidglass"]
+[ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="11_safearea"]
+
+[node name="GameView" type="Control" unique_id=1053425094]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gameview")
+
+[node name="AnimatedChalkBg" parent="." unique_id=1569632974 instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="GodotxSafeArea" type="Control" parent="." unique_id=552223109]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_safearea")
+
+[node name="ContentMargin" type="MarginContainer" parent="GodotxSafeArea" unique_id=1498192019]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 24
+
+[node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=1061552608]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="TopBar" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=844008085]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnMenu" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBar" unique_id=264674686 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 68)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "BTN_MENU"
+icon_texture = ExtResource("4_iconexit")
+font_size = 26
+
+[node name="TopSpacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBar" unique_id=1401362678]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnReset" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBar" unique_id=1288378143 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(230, 68)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "RESULT_PLAY_AGAIN"
+icon_texture = ExtResource("5_iconreset")
+font_size = 28
+
+[node name="ScoreRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1645827455]
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="P1Col" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow" unique_id=1353539608]
+layout_mode = 2
+
+[node name="P1TitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col" unique_id=1854807088]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="P1ScoreLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col" unique_id=1099338393]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="DrawsCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow" unique_id=712657745]
+layout_mode = 2
+
+[node name="DrawsTitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol" unique_id=1808741374]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="DrawsScoreLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol" unique_id=108439342]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="P2Col" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow" unique_id=40254057]
+layout_mode = 2
+
+[node name="P2TitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col" unique_id=1258088300]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="P2ScoreLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col" unique_id=1419266441]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="TurnBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1492335644 instance=ExtResource("6_chalkbanner")]
+custom_minimum_size = Vector2(520, 74)
+layout_mode = 2
+mouse_filter = 2
+text_key = "GAME_YOUR_TURN"
+
+[node name="BoardCenter" type="CenterContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1700950977]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BoardArea" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter" unique_id=1720974316]
+custom_minimum_size = Vector2(580, 580)
+layout_mode = 2
+
+[node name="BoardGridTexture" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=218205985]
+modulate = Color(0.24, 0.2, 0.17, 0.95)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_board")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_0" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=2075449517]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 188.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_0" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_0" unique_id=346993500]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_1" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1465690492]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_1" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_1" unique_id=1693500029]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_2" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1679750566]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 16.0
+offset_right = 564.0
+offset_bottom = 188.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_2" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_2" unique_id=91259590]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_3" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=781779323]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 204.0
+offset_right = 188.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_3" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_3" unique_id=1919121134]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_4" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1808404636]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 204.0
+offset_right = 376.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_4" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_4" unique_id=1649503739]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_5" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1314240766]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 204.0
+offset_right = 564.0
+offset_bottom = 376.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_5" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_5" unique_id=357835172]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_6" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1071930151]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 392.0
+offset_right = 188.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_6" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_6" unique_id=259674115]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_7" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=42525466]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 392.0
+offset_right = 376.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_7" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_7" unique_id=1431930221]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell_8" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=290868142]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 392.0
+offset_top = 392.0
+offset_right = 564.0
+offset_bottom = 564.0
+mouse_default_cursor_shape = 2
+
+[node name="Mark_8" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/Cell_8" unique_id=129434652]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = -22.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WinningLineLayer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea" unique_id=1901669608]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1513633809]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ResultOverlay" type="Control" parent="." unique_id=95662507]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="ResultOverlay" unique_id=470043442]
+material = ExtResource("10_liquidglass")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.09, 0.07, 0.55)
+
+[node name="Center" type="CenterContainer" parent="ResultOverlay" unique_id=19174167]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="Control" parent="ResultOverlay/Center" unique_id=1494462192]
+custom_minimum_size = Vector2(620, 680)
+layout_mode = 2
+
+[node name="CardPaperBg" type="ColorRect" parent="ResultOverlay/Center/Card" unique_id=2081944512]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95, 0.91, 0.82, 0.96)
+
+[node name="FrameRect" type="TextureRect" parent="ResultOverlay/Center/Card" unique_id=1069524560]
+modulate = Color(0.24, 0.2, 0.17, 0.95)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_winframe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardMargin" type="MarginContainer" parent="ResultOverlay/Center/Card" unique_id=1474408279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 64
+
+[node name="CardVBox" type="VBoxContainer" parent="ResultOverlay/Center/Card/CardMargin" unique_id=485983442]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TrophyRect" type="TextureRect" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=60363636]
+modulate = Color(0.76, 0.38, 0.1, 1)
+custom_minimum_size = Vector2(180, 140)
+layout_mode = 2
+texture = ExtResource("9_trophylaurel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResultTitleLabel" type="Label" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=1506180918]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ResultPointsLabel" type="Label" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=2046170151]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BtnPlayAgain" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=999735526 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(460, 84)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "RESULT_PLAY_AGAIN"
+icon_texture = ExtResource("5_iconreset")
+font_size = 32
+
+[node name="BtnResultMenu" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=1510802881 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(460, 84)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "BTN_MENU"
+icon_texture = ExtResource("4_iconexit")
+font_size = 32

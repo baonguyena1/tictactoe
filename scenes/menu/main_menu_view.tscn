@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://b8m3yv7qx63p1"]
+
+[ext_resource type="Script" uid="uid://dmlr3pxuj8dpc" path="res://scenes/menu/main_menu_view.gd" id="1_mainmenu"]
+[ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="Texture2D" uid="uid://ceb7bnnkiqe4k" path="res://resources/textures/title.png" id="3_title"]
+[ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="4_chalkbtn"]
+[ext_resource type="Texture2D" uid="uid://dqkxffg3garkq" path="res://resources/textures/icon_play.png" id="5_iconplay"]
+[ext_resource type="Texture2D" uid="uid://dgm6gskjk6v22" path="res://resources/textures/trophy.png" id="6_trophy"]
+[ext_resource type="Texture2D" uid="uid://dc4dnnwub6ng5" path="res://resources/textures/star.png" id="7_star"]
+[ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="8_safearea"]
+[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/PatrickHand-Regular.ttf" id="9_0lvjg"]
+
+[sub_resource type="FontVariation" id="FontVariation_7762d"]
+base_font = ExtResource("9_0lvjg")
+variation_embolden = 0.15
+variation_transform = Transform2D(1, 0, -0.14, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dehia"]
+font = SubResource("FontVariation_7762d")
+font_size = 24
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[node name="MainMenuView" type="Control" unique_id=1340314276]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mainmenu")
+
+[node name="AnimatedChalkBg" parent="." unique_id=355872283 instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="GodotxSafeArea" type="Control" parent="." unique_id=2087250402]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_safearea")
+
+[node name="ContentMargin" type="MarginContainer" parent="GodotxSafeArea" unique_id=1849201948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 24
+
+[node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=12968886]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="SpacerTop" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1035159947]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="TitleArt" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1490658805]
+modulate = Color(0.22, 0.18, 0.15, 1)
+custom_minimum_size = Vector2(540, 170)
+layout_mode = 2
+texture = ExtResource("3_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacerMiddle" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2088737999]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="BtnPlayAI" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=130550604 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(460, 88)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "MENU_PLAY_AI"
+icon_texture = ExtResource("5_iconplay")
+
+[node name="BtnTwoPlayers" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=134461922 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(460, 88)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "MENU_TWO_PLAYERS"
+icon_texture = ExtResource("5_iconplay")
+
+[node name="BtnScores" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1642151581 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(460, 88)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "MENU_SCORES"
+icon_texture = ExtResource("6_trophy")
+
+[node name="BtnSettings" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=406097960 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(460, 88)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "MENU_SETTINGS"
+icon_texture = ExtResource("7_star")
+
+[node name="SpacerBottom" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1454056620]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SkillFooterLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1074267677]
+layout_mode = 2
+text = "AI_SKILL_FOOTER"
+label_settings = SubResource("LabelSettings_dehia")
+horizontal_alignment = 1

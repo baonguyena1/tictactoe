@@ -31,7 +31,7 @@ func _make_test_coordinator(screen_container: Control) -> AppCoordinator:
 	var container := AppContainer.new(null, settings, scores, weights)
 	var coordinator := AppCoordinator.new(screen_container, container, false)
 	coordinator.animations_enabled = false
-	AppRoot.register_default_routes(coordinator, container)
+	MainScene.register_default_routes(coordinator, container)
 	coordinator.register_screen_factory(
 		AppCoordinator.ROUTE_GAME,
 		func(_cfg: GameModeConfig) -> Control:

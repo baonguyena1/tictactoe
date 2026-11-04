@@ -23,6 +23,7 @@ general/ios/mix_with_others=true
 
 UIFlow="*res://addons/ui_flow/core/ui_flow_autoload.tscn"
 UIFlowUI="*res://addons/ui_flow/core/ui_flow_ui_autoload.tscn"
+_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]
 
@@ -36,7 +37,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ai/plugin.cfg", "res://addons/core/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/learning/plugin.cfg", "res://addons/ui_flow/plugin.cfg")
+enabled=PackedStringArray("res://addons/ai/plugin.cfg", "res://addons/core/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/godotx_safe_area/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/learning/plugin.cfg", "res://addons/ui_flow/plugin.cfg")
 
 [input_devices]
 
@@ -44,7 +45,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://app/resources/i18n/strings.en.translation", "res://app/resources/i18n/strings.vi.translation")
+locale/translations=PackedStringArray("res://resources/i18n/strings.en.translation", "res://resources/i18n/strings.vi.translation")
 
 [physics]
 
@@ -53,4 +54,6 @@ locale/translations=PackedStringArray("res://app/resources/i18n/strings.en.trans
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,324 @@
+[gd_scene format=3 uid="uid://cb5cmn7a18yhp"]
+
+[ext_resource type="Script" uid="uid://dxr06kcyr21gn" path="res://scenes/scores/scores_view.gd" id="1_scoresview"]
+[ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
+[ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="3_chalkbtn"]
+[ext_resource type="Texture2D" uid="uid://xnvcodf7b1u5" path="res://resources/textures/icon_close.png" id="4_iconclose"]
+[ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
+[ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="6_trophylaurel"]
+[ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="7_safearea"]
+[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/PatrickHand-Regular.ttf" id="8_34uv3"]
+
+[sub_resource type="FontVariation" id="FontVariation_7762d"]
+base_font = ExtResource("8_34uv3")
+variation_embolden = 0.15
+variation_transform = Transform2D(1, 0, -0.14, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pgg2k"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.48, 0.42, 0.38, 0.9)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mxdr4"]
+font = SubResource("FontVariation_7762d")
+font_size = 56
+font_color = Color(0.76, 0.38, 0.1, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jtn60"]
+font = SubResource("FontVariation_7762d")
+font_size = 22
+font_color = Color(0.48, 0.42, 0.38, 0.9)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_blgg5"]
+font = SubResource("FontVariation_7762d")
+font_size = 34
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_exuwq"]
+font = SubResource("FontVariation_7762d")
+font_size = 22
+font_color = Color(0.48, 0.42, 0.38, 0.9)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i1a0u"]
+font = SubResource("FontVariation_7762d")
+font_size = 34
+font_color = Color(0.76, 0.38, 0.1, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0drlv"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.76, 0.38, 0.1, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y63rx"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.18, 0.15, 0.13, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6l6i"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xe1i1"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.18, 0.15, 0.13, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m3wv1"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wukpn"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.18, 0.15, 0.13, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m36j3"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k75ux"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.18, 0.15, 0.13, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_36d11"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0n6f"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.18, 0.15, 0.13, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cpchl"]
+font = SubResource("FontVariation_7762d")
+font_size = 26
+font_color = Color(0.12, 0.48, 0.22, 1)
+shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+
+[node name="ScoresView" type="Control" unique_id=898914992]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_scoresview")
+
+[node name="AnimatedChalkBg" parent="." unique_id=708363532 instance=ExtResource("2_chalkbg")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="GodotxSafeArea" type="Control" parent="." unique_id=1121602361]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_safearea")
+
+[node name="ContentMargin" type="MarginContainer" parent="GodotxSafeArea" unique_id=1498192019]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 24
+
+[node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=559667824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="TopRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1140671186]
+layout_mode = 2
+
+[node name="BtnBack" parent="GodotxSafeArea/ContentMargin/MainColumn/TopRow" unique_id=766717797 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 68)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text_key = "BTN_BACK"
+icon_texture = ExtResource("4_iconclose")
+font_size = 26
+
+[node name="TitleBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2049336187 instance=ExtResource("5_chalkbanner")]
+custom_minimum_size = Vector2(520, 74)
+layout_mode = 2
+mouse_filter = 2
+text_key = "SCORES_TITLE"
+
+[node name="TrophyRect" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1442731436]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+texture = ExtResource("6_trophylaurel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SummaryBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1537419970]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="TotalTitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=1922469895]
+layout_mode = 2
+text = "SCORES_TOTAL"
+label_settings = SubResource("LabelSettings_pgg2k")
+horizontal_alignment = 1
+
+[node name="TotalValueLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=1605848888]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_mxdr4")
+horizontal_alignment = 1
+
+[node name="SubSummaryRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=289685510]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="BestGameCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow" unique_id=231779617]
+layout_mode = 2
+
+[node name="BestGameTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1827318673]
+layout_mode = 2
+text = "SCORES_BEST_GAME"
+label_settings = SubResource("LabelSettings_jtn60")
+horizontal_alignment = 1
+
+[node name="BestGameValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1458184556]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_blgg5")
+horizontal_alignment = 1
+
+[node name="BestStreakCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow" unique_id=1623811535]
+layout_mode = 2
+
+[node name="BestStreakTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=1120759393]
+layout_mode = 2
+text = "SCORES_BEST_STREAK"
+label_settings = SubResource("LabelSettings_exuwq")
+horizontal_alignment = 1
+
+[node name="BestStreakValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=447654809]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_i1a0u")
+horizontal_alignment = 1
+
+[node name="SectionDiffLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=412775731]
+layout_mode = 2
+text = "SCORES_BY_DIFF"
+label_settings = SubResource("LabelSettings_0drlv")
+horizontal_alignment = 1
+
+[node name="TableBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=312186547]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="RowEasy" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=172297177]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowEasy" unique_id=1629599764]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFF_EASY (×1)"
+label_settings = SubResource("LabelSettings_y63rx")
+
+[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowEasy" unique_id=1127506038]
+layout_mode = 2
+text = "0  /  0  /  0"
+label_settings = SubResource("LabelSettings_r6l6i")
+horizontal_alignment = 2
+
+[node name="RowMedium" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=1817559550]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowMedium" unique_id=802626203]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFF_MEDIUM (×2)"
+label_settings = SubResource("LabelSettings_xe1i1")
+
+[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowMedium" unique_id=1381316712]
+layout_mode = 2
+text = "0  /  0  /  0"
+label_settings = SubResource("LabelSettings_m3wv1")
+horizontal_alignment = 2
+
+[node name="RowLearning" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=278363225]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowLearning" unique_id=87797852]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFF_LEARNING (×3)"
+label_settings = SubResource("LabelSettings_wukpn")
+
+[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowLearning" unique_id=1831316011]
+layout_mode = 2
+text = "0  /  0  /  0"
+label_settings = SubResource("LabelSettings_m36j3")
+horizontal_alignment = 2
+
+[node name="RowHard" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=1823494564]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowHard" unique_id=556112821]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFF_HARD (×4)"
+label_settings = SubResource("LabelSettings_k75ux")
+
+[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowHard" unique_id=1206200208]
+layout_mode = 2
+text = "0  /  0  /  0"
+label_settings = SubResource("LabelSettings_36d11")
+horizontal_alignment = 2
+
+[node name="RowUnbeatable" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=558420165]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowUnbeatable" unique_id=263421244]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DIFF_UNBEATABLE (×8)"
+label_settings = SubResource("LabelSettings_k0n6f")
+
+[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowUnbeatable" unique_id=1498573090]
+layout_mode = 2
+text = "0  /  0  /  0"
+label_settings = SubResource("LabelSettings_cpchl")
+horizontal_alignment = 2

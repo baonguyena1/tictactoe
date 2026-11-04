@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://eb5l1tg4gg1s"]
+
+[ext_resource type="Shader" path="res://scenes/shared/liquid_glass.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/blur_amount = 5.2
+shader_parameter/refraction_strength = 0.015
+shader_parameter/chromatic_aberration = 0.005
+shader_parameter/glass_tint = Color(0.02, 0.04, 0.03, 0.82)
+shader_parameter/rim_power = 3.5
+shader_parameter/rim_color = Color(1, 1, 1, 0.35)
