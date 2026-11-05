@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="6_trophylaurel"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="7_safearea"]
-[ext_resource type="Texture2D" uid="uid://176a184805a55" path="res://resources/textures/quest_gear.png" id="8_questgear"]
-[ext_resource type="Texture2D" uid="uid://98b7f8258cc83" path="res://resources/textures/quest_swords.png" id="9_questswords"]
-[ext_resource type="Texture2D" uid="uid://23dc47829561e" path="res://resources/textures/quest_flame.png" id="10_questflame"]
+[ext_resource type="Texture2D" uid="uid://c26gu1y36kphp" path="res://resources/textures/quest_gear.png" id="8_questgear"]
+[ext_resource type="Texture2D" uid="uid://dxhbjphrlnr1s" path="res://resources/textures/quest_swords.png" id="9_questswords"]
+[ext_resource type="Texture2D" uid="uid://hy0r0ym1eqit" path="res://resources/textures/quest_flame.png" id="10_questflame"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_summary"]
 content_margin_left = 18.0

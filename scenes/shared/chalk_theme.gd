@@ -21,6 +21,12 @@ const TEX_BANNER_TURN := "res://resources/textures/banner_turn.png"
 ## Texture path for the chalk dust particle speck.
 const TEX_DUST_PARTICLE := "res://resources/textures/dust_particle.png"
 
+## Texture path for celebratory confetti particle.
+const TEX_CONFETTI := "res://resources/textures/confetti_piece.png"
+
+## Texture path for celebratory firework sparkle star.
+const TEX_SPARKLE_STAR := "res://resources/textures/sparkle_star.png"
+
 ## Texture path for the play icon.
 const TEX_ICON_PLAY := "res://resources/textures/icon_play.png"
 

@@ -12,25 +12,53 @@ const RESULT_OVERLAY_DELAY := 0.45
 
 @onready var _btn_menu: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopBar/BtnMenu
 @onready var _btn_reset: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopBar/BtnReset
-@onready var _p1_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col/P1TitleLabel
-@onready var _p1_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col/P1ScoreLabel
-@onready var _draws_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsTitleLabel
-@onready var _draws_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsScoreLabel
-@onready var _p2_title_label: Label = (
-	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel") as Label
-	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel")
-	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2TitleLabel") as Label
+@onready var _p1_title_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP1/Margin/P1Col/P1TitleLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP1/Margin/P1Col/P1TitleLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col/P1TitleLabel") as Label
 )
-@onready var _p2_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2ScoreLabel
+@onready var _p1_score_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP1/Margin/P1Col/P1ScoreLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP1/Margin/P1Col/P1ScoreLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col/P1ScoreLabel") as Label
+)
+@onready var _draws_title_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardDraws/Margin/DrawsCol/DrawsTitleLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardDraws/Margin/DrawsCol/DrawsTitleLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsTitleLabel") as Label
+)
+@onready var _draws_score_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardDraws/Margin/DrawsCol/DrawsScoreLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardDraws/Margin/DrawsCol/DrawsScoreLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsScoreLabel") as Label
+)
+@onready var _p2_title_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2Header/P2TitleLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2Header/P2TitleLabel")
+	else (
+		get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel") as Label
+		if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel")
+		else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2TitleLabel") as Label
+	)
+)
+@onready var _p2_score_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2ScoreLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2ScoreLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2ScoreLabel") as Label
+)
 @onready var _turn_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TurnBanner
 @onready var _board_area: Control = $GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea
 @onready var _winning_line_layer: Control = $GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer
 @onready var _shadow_strike_line: Line2D = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer/ShadowStrikeLine") as Line2D
 @onready var _chalk_strike_line: Line2D = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer/ChalkStrikeLine") as Line2D
 @onready var _ai_avatar_rect: TextureRect = (
-	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect") as TextureRect
-	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect")
-	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/AiAvatarRect") as TextureRect
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2Header/AiAvatarRect") as TextureRect
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/CardP2/Margin/P2Col/P2Header/AiAvatarRect")
+	else (
+		get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect") as TextureRect
+		if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect")
+		else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/AiAvatarRect") as TextureRect
+	)
 )
 @onready var _streak_badge: HBoxContainer = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/StreakBadge") as HBoxContainer
 @onready var _streak_label: Label = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/StreakBadge/StreakLabel") as Label
@@ -48,6 +76,12 @@ const RESULT_OVERLAY_DELAY := 0.45
 	get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnResultMenu") as ChalkButton
 	if has_node("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnResultMenu")
 	else get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/BtnResultMenu") as ChalkButton
+)
+@onready var _result_trophy_rect: TextureRect = (
+	get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/TrophyRect") as TextureRect
+)
+@onready var _celebration_view: CelebrationView = (
+	get_node_or_null("ResultOverlay/CelebrationView") as CelebrationView
 )
 
 var _view_model: GameViewModel
@@ -111,12 +145,18 @@ func refresh_ui() -> void:
 	_btn_play_again.refresh_content()
 	_btn_result_menu.refresh_content()
 
-	_p1_title_label.label_settings = ChalkTheme.make_label_settings(28, ChalkTheme.CHALK_WHITE, true)
-	_p1_score_label.label_settings = ChalkTheme.make_label_settings(44, ChalkTheme.CHALK_RED, true)
-	_draws_title_label.label_settings = ChalkTheme.make_label_settings(26, ChalkTheme.CHALK_DIM, true)
-	_draws_score_label.label_settings = ChalkTheme.make_label_settings(40, ChalkTheme.CHALK_DIM, true)
-	_p2_title_label.label_settings = ChalkTheme.make_label_settings(28, ChalkTheme.CHALK_WHITE, true)
-	_p2_score_label.label_settings = ChalkTheme.make_label_settings(44, ChalkTheme.CHALK_BLUE, true)
+	if _p1_title_label != null:
+		_p1_title_label.label_settings = ChalkTheme.make_label_settings(34, ChalkTheme.CHALK_RED, true)
+	if _p1_score_label != null:
+		_p1_score_label.label_settings = ChalkTheme.make_label_settings(50, ChalkTheme.CHALK_RED, true)
+	if _draws_title_label != null:
+		_draws_title_label.label_settings = ChalkTheme.make_label_settings(32, ChalkTheme.CHALK_DIM, true)
+	if _draws_score_label != null:
+		_draws_score_label.label_settings = ChalkTheme.make_label_settings(48, ChalkTheme.CHALK_DIM, true)
+	if _p2_title_label != null:
+		_p2_title_label.label_settings = ChalkTheme.make_label_settings(34, ChalkTheme.CHALK_BLUE, true)
+	if _p2_score_label != null:
+		_p2_score_label.label_settings = ChalkTheme.make_label_settings(50, ChalkTheme.CHALK_BLUE, true)
 
 	if _view_model == null:
 		_turn_banner.set_banner_text("GAME_YOUR_TURN", ChalkTheme.CHALK_YELLOW, false)
@@ -229,6 +269,8 @@ func _on_vm_cell_marked(cell_index: int, mark: Domain.Mark) -> void:
 
 ## Callback invoked when the board is wiped clean for a new round.
 func _on_vm_board_wiped() -> void:
+	if _celebration_view != null:
+		_celebration_view.clear()
 	for rect in _cell_mark_rects:
 		if rect != null:
 			rect.visible = false
@@ -368,6 +410,9 @@ func _show_result_overlay() -> void:
 	if _result_overlay == null:
 		return
 	_result_overlay.visible = true
+
+	var is_win: bool = _view_model != null and _view_model.get_last_outcome() == Domain.Outcome.WIN
+
 	if animations_enabled and is_inside_tree() and not Engine.is_editor_hint():
 		_result_overlay.modulate.a = 0.0
 		if _result_card != null:
@@ -381,8 +426,19 @@ func _show_result_overlay() -> void:
 
 		if _result_card != null:
 			var card_tween := create_tween().set_parallel(true)
-			card_tween.tween_property(_result_card, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			var scale_trans: Tween.TransitionType = Tween.TRANS_ELASTIC if is_win else Tween.TRANS_BACK
+			var scale_dur: float = 0.48 if is_win else 0.35
+			card_tween.tween_property(_result_card, "scale", Vector2.ONE, scale_dur).set_trans(scale_trans).set_ease(Tween.EASE_OUT)
 			card_tween.tween_property(_result_card, "modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+		if is_win:
+			if _celebration_view != null:
+				_celebration_view.start_celebration()
+			if _result_trophy_rect != null:
+				_result_trophy_rect.pivot_offset = _result_trophy_rect.size * 0.5
+				var trophy_tw := create_tween()
+				trophy_tw.tween_property(_result_trophy_rect, "scale", Vector2(1.24, 1.24), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				trophy_tw.tween_property(_result_trophy_rect, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	else:
 		_result_overlay.modulate.a = 1.0
 		if _result_card != null:
@@ -392,6 +448,8 @@ func _show_result_overlay() -> void:
 
 ## Smoothly fades out the Result Overlay modal ("fade out effect").
 func _hide_result_overlay(on_complete: Callable = Callable()) -> void:
+	if _celebration_view != null:
+		_celebration_view.stop_celebration()
 	if _result_overlay == null or not _result_overlay.visible:
 		if on_complete.is_valid():
 			on_complete.call()

@@ -41,6 +41,7 @@ GAME_TAP_HINT_CHALK,Tap an empty cell to draw with chalk,Chạm vào ô trống 
 GAME_TAP_HINT_PAPER,Tap an empty cell to draw with ink,Chạm vào ô trống để vẽ bút mực
 RESULT_MATCH_FINISHED,Match Finished,Kết thúc ván
 RESULT_YOU_WIN,YOU WIN!,BẠN THẮNG!
+RESULT_WIN_STREAK_TITLE,WIN STREAK ×{s}!,CHUỖI THẮNG ×{s}!
 RESULT_AI_WINS,AI WINS!,MÁY THẮNG!
 RESULT_MARK_WINS,{m} WINS!,{m} THẮNG!
 RESULT_DRAW,IT'S A DRAW!,HÒA NHAU!

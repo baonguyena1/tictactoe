@@ -8,6 +8,7 @@ const SOUND_CHALK := "res://resources/sounds/chalk_write.wav"
 const SOUND_WIPE := "res://resources/sounds/board_wipe.wav"
 const SOUND_TAP := "res://resources/sounds/tap.wav"
 const SOUND_WIN := "res://resources/sounds/win.wav"
+const SOUND_WIN_STREAK := "res://resources/sounds/win_streak.wav"
 const SOUND_DRAW := "res://resources/sounds/draw.wav"
 const SOUND_LOSE := "res://resources/sounds/lose.wav"
 
@@ -72,6 +73,12 @@ func play_outcome(outcome: Domain.Outcome) -> void:
 			_play_sfx("draw", 1.0, 1.0)
 
 
+## Plays a triumphant celebratory fanfare when the player achieves a win streak.
+func play_win_streak() -> void:
+	_play_sfx("win_streak", 1.0, 1.0)
+	_trigger_haptic(60)
+
+
 ## Creates the BGM player and SFX player nodes as children of `host_node`.
 func _setup_players(host_node: Node) -> void:
 	_bgm_player = AudioStreamPlayer.new()
@@ -90,6 +97,7 @@ func _setup_players(host_node: Node) -> void:
 		"wipe": SOUND_WIPE,
 		"tap": SOUND_TAP,
 		"win": SOUND_WIN,
+		"win_streak": SOUND_WIN_STREAK,
 		"draw": SOUND_DRAW,
 		"lose": SOUND_LOSE,
 	}

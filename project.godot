@@ -53,7 +53,7 @@ locale/translations=PackedStringArray("res://resources/i18n/strings.en.translati
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.88, 0.85, 0.80, 1)
+environment/defaults/default_clear_color=Color(0.95, 0.93, 0.89, 1)
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

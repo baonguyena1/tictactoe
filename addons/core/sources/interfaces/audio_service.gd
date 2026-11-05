@@ -31,3 +31,8 @@ func play_tap() -> void:
 ## Plays the end-of-match sound effect corresponding to `outcome` (WIN, DRAW, or LOSS).
 func play_outcome(_outcome: Domain.Outcome) -> void:
 	pass
+
+
+## Plays a triumphant celebratory fanfare when the player achieves a win streak.
+func play_win_streak() -> void:
+	pass

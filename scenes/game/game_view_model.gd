@@ -183,6 +183,9 @@ func get_result_title_text() -> String:
 		var m := "X" if _winner_mark == Domain.Mark.X else "O"
 		return tr("RESULT_MARK_WINS").replace("{m}", m)
 	if _winner_mark == _config.human_mark:
+		var streak := get_current_streak()
+		if streak >= 2:
+			return tr("RESULT_WIN_STREAK_TITLE").replace("{s}", str(streak))
 		return tr("RESULT_YOU_WIN")
 	return tr("RESULT_AI_WINS")
 
@@ -260,7 +263,10 @@ func _finish_match(winner: Domain.Mark) -> void:
 			var ai_outcome := Domain.flip_outcome(_last_outcome)
 			_ai_strategy.on_game_ended(ai_outcome)
 
-		_container.audio_service.play_outcome(_last_outcome)
+		if _last_outcome == Domain.Outcome.WIN:
+			_container.audio_service.play_win_streak()
+		else:
+			_container.audio_service.play_outcome(_last_outcome)
 
 	state_changed.emit()
 	match_finished.emit(_last_outcome, _winning_line, _last_points_awarded)
