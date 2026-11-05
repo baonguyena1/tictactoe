@@ -159,7 +159,7 @@ func refresh_ui() -> void:
 		_p2_score_label.label_settings = ChalkTheme.make_label_settings(50, ChalkTheme.CHALK_BLUE, true)
 
 	if _view_model == null:
-		_turn_banner.set_banner_text("GAME_YOUR_TURN", ChalkTheme.CHALK_YELLOW, false)
+		_turn_banner.set_banner_text("GAME_YOUR_TURN", ChalkTheme.CHALK_RED, false)
 		_p1_title_label.text = tr("GAME_PLAYER_X")
 		_p2_title_label.text = tr("GAME_PLAYER_O")
 		_draws_title_label.text = tr("GAME_DRAWS")
@@ -184,11 +184,18 @@ func refresh_ui() -> void:
 		_ai_avatar_rect.visible = not _view_model.get_config().is_two_player
 	_update_streak_badge()
 
-	var banner_color := ChalkTheme.CHALK_YELLOW
+	var current_mark := _view_model.get_current_turn()
+	var banner_color := ChalkTheme.CHALK_RED if current_mark == Domain.Mark.X else ChalkTheme.CHALK_BLUE
 	if _view_model.is_ai_thinking():
 		banner_color = ChalkTheme.CHALK_WHITE
 	elif _view_model.is_game_over():
-		banner_color = ChalkTheme.CHALK_GREEN
+		var outcome := _view_model.get_last_outcome()
+		if outcome == Domain.Outcome.WIN:
+			banner_color = ChalkTheme.CHALK_RED
+		elif outcome == Domain.Outcome.LOSS:
+			banner_color = ChalkTheme.CHALK_BLUE
+		else:
+			banner_color = ChalkTheme.CHALK_DIM
 	_turn_banner.set_banner_text(_view_model.get_turn_banner_text(), banner_color, false)
 
 
@@ -322,7 +329,7 @@ func _update_winning_strike_line(p: float) -> void:
 	p_end += dir * 30.0
 
 	var winner_mark: Domain.Mark = _view_model.get_winner_mark() if _view_model != null else Domain.Mark.NONE
-	var line_color := ChalkTheme.CHALK_YELLOW
+	var line_color := ChalkTheme.CHALK_RED
 	if winner_mark == Domain.Mark.X:
 		line_color = ChalkTheme.CHALK_RED
 	elif winner_mark == Domain.Mark.O:
@@ -342,11 +349,11 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 	_active_winning_line = winning_line
 	if _result_title_label != null:
 		_result_title_label.text = _view_model.get_result_title_text()
-		var title_color := ChalkTheme.CHALK_YELLOW
-		if outcome == Domain.Outcome.WIN:
-			title_color = ChalkTheme.CHALK_GREEN
-		elif outcome == Domain.Outcome.LOSS and not _view_model.get_config().is_two_player:
-			title_color = ChalkTheme.CHALK_RED
+		var title_color := ChalkTheme.CHALK_RED
+		if outcome == Domain.Outcome.LOSS and not _view_model.get_config().is_two_player:
+			title_color = ChalkTheme.CHALK_BLUE
+		elif outcome == Domain.Outcome.DRAW:
+			title_color = ChalkTheme.CHALK_DIM
 		_result_title_label.label_settings = ChalkTheme.make_label_settings(54, title_color, true)
 
 	if _result_points_label != null:
@@ -373,7 +380,7 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 		if not _active_winning_line.is_empty():
 			_win_line_progress = 0.0
 			var winner_mark: Domain.Mark = _view_model.get_winner_mark() if _view_model != null else Domain.Mark.NONE
-			var last_burst_step: int = -1
+			var burst_tracker := [-1]
 			tween.tween_method(
 				func(p: float) -> void:
 					_win_line_progress = p
@@ -381,8 +388,8 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 					if _winning_line_layer != null:
 						_winning_line_layer.queue_redraw()
 					var step := int(p * 3.5)
-					if step != last_burst_step and step > 0:
-						last_burst_step = step
+					if step != burst_tracker[0] and step > 0:
+						burst_tracker[0] = step
 						var strike_pos := _get_strike_pos_at(p)
 						_spawn_chalk_dust_burst(strike_pos, winner_mark),
 				0.0,
@@ -561,8 +568,8 @@ func _update_streak_badge() -> void:
 		_streak_badge.visible = true
 		if _streak_label != null:
 			var mult: float = 1.0 + float(streak - 1) * 0.25
-			_streak_label.text = "Chuỗi thắng: %d! (x%.1f)" % [streak, mult]
-			_streak_label.label_settings = ChalkTheme.make_label_settings(24, ChalkTheme.CHALK_YELLOW, true)
+			_streak_label.text = tr("GAME_STREAK").replace("{n}", str(streak)).replace("{m}", "%.1f" % mult)
+			_streak_label.label_settings = ChalkTheme.make_label_settings(24, ChalkTheme.CHALK_RED, true)
 	else:
 		_streak_badge.visible = false
 
@@ -619,7 +626,7 @@ func _on_draw_winning_line() -> void:
 	p_start -= dir * 24.0
 	p_end += dir * 24.0
 
-	var line_color := ChalkTheme.CHALK_YELLOW
+	var line_color := ChalkTheme.CHALK_RED
 	if _view_model != null:
 		if _view_model.get_winner_mark() == Domain.Mark.X:
 			line_color = ChalkTheme.CHALK_RED

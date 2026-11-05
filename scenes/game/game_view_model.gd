@@ -200,7 +200,8 @@ func get_result_points_text() -> String:
 
 ## Pops back to the previous screen (or Main Menu) via the coordinator.
 func on_back_to_menu_pressed() -> void:
-	_coordinator.show_main_menu()
+	if not _coordinator.go_back():
+		_coordinator.show_main_menu()
 
 
 ## Internal helper that places `mark` at `cell_index`, plays chalk SFX, and checks for win or draw.

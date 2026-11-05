@@ -85,11 +85,11 @@ func refresh_ui() -> void:
 		_skill_footer_label.text = _view_model.get_ai_skill_footer_text()
 		if _streak_label != null:
 			var best_streak := _view_model.get_best_streak()
-			_streak_label.text = "Kỷ lục: %d 🔥" % best_streak
+			_streak_label.text = tr("MENU_RECORD").replace("{n}", str(best_streak))
 	else:
 		_skill_footer_label.text = tr("AI_SKILL_FOOTER").replace("{p}", "0")
 		if _streak_label != null:
-			_streak_label.text = "Kỷ lục: 0 🔥"
+			_streak_label.text = tr("MENU_RECORD").replace("{n}", "0")
 
 
 ## Returns the Play vs AI button for testing or focus handling.

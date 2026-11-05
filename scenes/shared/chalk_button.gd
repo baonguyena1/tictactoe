@@ -237,7 +237,8 @@ func refresh_content() -> void:
 	_badge_label.text = badge_text
 	_badge_label.visible = not badge_text.is_empty()
 	if _badge_label.label_settings == null:
-		_badge_label.label_settings = ChalkTheme.make_label_settings(font_size - 4, ChalkTheme.CHALK_YELLOW, true)
+		var badge_col := Color(0.99, 0.98, 0.96, 0.95) if button_style != "normal" else ChalkTheme.CHALK_DIM
+		_badge_label.label_settings = ChalkTheme.make_label_settings(font_size - 4, badge_col, true)
 
 	if not tag_text.is_empty():
 		_tag_label.text = tr(tag_text) if tr(tag_text) != tag_text else tag_text
@@ -262,40 +263,41 @@ func _apply_theme_colors() -> void:
 
 	match button_style:
 		"primary":
-			face_color = Color(0.96, 0.70, 0.22, 1.0)
-			bevel_color = Color(0.72, 0.44, 0.08, 1.0)
-			rim_color = Color(0.68, 0.40, 0.06, 0.5)
-			effective_text_color = Color(0.20, 0.12, 0.04, 1.0)
-			title_outline_size = 0
-			title_shadow_color = Color(1.0, 0.88, 0.55, 0.45)
-			title_shadow_offset = Vector2(0, 1.5)
-			subtitle_color = Color(0.38, 0.22, 0.08, 0.95)
-			gloss_alpha = 0.24
-			rivet_tint = Color(0.55, 0.32, 0.06, 0.45)
-		"secondary":
-			face_color = Color(0.34, 0.58, 0.82, 1.0)
-			bevel_color = Color(0.18, 0.36, 0.56, 1.0)
-			rim_color = Color(0.14, 0.28, 0.46, 0.5)
-			effective_text_color = Color(0.98, 0.98, 0.98, 1.0)
-			title_outline_size = 2
-			title_outline_color = Color(0.12, 0.26, 0.44, 0.9)
-			title_shadow_color = Color(0.10, 0.22, 0.38, 0.5)
-			title_shadow_offset = Vector2(0, 2.0)
-			subtitle_color = Color(0.88, 0.94, 1.0, 0.92)
-			gloss_alpha = 0.18
-			rivet_tint = Color(0.12, 0.26, 0.44, 0.45)
-		"accent":
-			face_color = Color(0.88, 0.29, 0.26, 1.0)
-			bevel_color = Color(0.66, 0.16, 0.14, 1.0)
-			rim_color = Color(0.52, 0.12, 0.10, 0.5)
-			effective_text_color = Color(0.98, 0.98, 0.98, 1.0)
+			face_color = Color(0.84, 0.24, 0.20, 1.0)
+			bevel_color = Color(0.62, 0.15, 0.12, 1.0)
+			rim_color = Color(0.50, 0.12, 0.10, 0.5)
+			effective_text_color = Color(0.99, 0.98, 0.96, 1.0)
 			title_outline_size = 2
 			title_outline_color = Color(0.48, 0.10, 0.08, 0.9)
 			title_shadow_color = Color(0.38, 0.08, 0.06, 0.5)
 			title_shadow_offset = Vector2(0, 2.0)
-			subtitle_color = Color(1.0, 0.92, 0.92, 0.9)
+			subtitle_color = Color(1.0, 0.92, 0.92, 0.92)
 			gloss_alpha = 0.20
 			rivet_tint = Color(0.48, 0.10, 0.08, 0.45)
+		"secondary":
+			face_color = Color(0.22, 0.46, 0.74, 1.0)
+			bevel_color = Color(0.14, 0.30, 0.52, 1.0)
+			rim_color = Color(0.10, 0.22, 0.40, 0.5)
+			effective_text_color = Color(0.99, 0.98, 0.96, 1.0)
+			title_outline_size = 2
+			title_outline_color = Color(0.12, 0.26, 0.44, 0.9)
+			title_shadow_color = Color(0.10, 0.22, 0.38, 0.5)
+			title_shadow_offset = Vector2(0, 2.0)
+			subtitle_color = Color(0.90, 0.94, 1.0, 0.92)
+			gloss_alpha = 0.18
+			rivet_tint = Color(0.12, 0.26, 0.44, 0.45)
+		"accent":
+			face_color = Color(0.72, 0.16, 0.14, 1.0)
+			bevel_color = Color(0.52, 0.10, 0.08, 1.0)
+			rim_color = Color(0.40, 0.08, 0.06, 0.5)
+			effective_text_color = Color(0.99, 0.98, 0.96, 1.0)
+			title_outline_size = 2
+			title_outline_color = Color(0.42, 0.08, 0.06, 0.9)
+			title_shadow_color = Color(0.32, 0.06, 0.04, 0.5)
+			title_shadow_offset = Vector2(0, 2.0)
+			subtitle_color = Color(1.0, 0.90, 0.90, 0.92)
+			gloss_alpha = 0.20
+			rivet_tint = Color(0.44, 0.08, 0.06, 0.45)
 
 	if _base_bg != null:
 		var base_style := StyleBoxFlat.new()

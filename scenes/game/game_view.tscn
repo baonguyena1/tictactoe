@@ -251,7 +251,7 @@ stretch_mode = 5
 
 [node name="StreakLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/StreakBadge" unique_id=2081944533]
 layout_mode = 2
-text = "Chuỗi thắng: 2! (x1.5)"
+text = "Streak: 2! (x1.5)"
 
 [node name="TurnBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1492335644 instance=ExtResource("6_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
@@ -598,18 +598,20 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="BtnPlayAgain" parent="ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow" unique_id=999735526 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(220, 76)
+custom_minimum_size = Vector2(236, 76)
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text_key = "RESULT_PLAY_AGAIN"
 icon_texture = ExtResource("5_iconreset")
-font_size = 36
+font_size = 28
 button_style = "primary"
 
 [node name="BtnResultMenu" parent="ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow" unique_id=1510802881 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(210, 76)
+custom_minimum_size = Vector2(200, 76)
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 text_key = "BTN_MENU"
 icon_texture = ExtResource("4_iconexit")
-font_size = 36
+font_size = 28

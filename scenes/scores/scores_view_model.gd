@@ -40,6 +40,11 @@ func get_stats_for_difficulty(difficulty: Domain.Difficulty) -> Dictionary:
 	return _container.score_repo.get_stats_for_difficulty(difficulty)
 
 
+## Refreshes scores data and notifies observers.
+func refresh() -> void:
+	state_changed.emit()
+
+
 ## Dismisses the High Scores modal screen via `AppCoordinator.dismiss_modal()`.
 func on_back_pressed() -> void:
 	_coordinator.dismiss_modal()

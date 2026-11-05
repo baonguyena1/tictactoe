@@ -5,7 +5,6 @@ extends UIFlowPage
 
 @onready var _btn_back: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopRow/BtnBack
 @onready var _title_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TitleBanner
-@onready var _trophy_rect: TextureRect = $GodotxSafeArea/ContentMargin/MainColumn/TrophyRect
 @onready var _total_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/TotalTitleLabel
 @onready var _total_value_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/TotalValueLabel
 @onready var _best_game_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow/BestGameCol/BestGameTitle
@@ -82,12 +81,12 @@ func refresh_ui() -> void:
 		return
 
 	_btn_back.refresh_content()
-	_title_banner.set_banner_text("SCORES_TITLE", ChalkTheme.CHALK_YELLOW, false)
+	_title_banner.set_banner_text("SCORES_TITLE", ChalkTheme.CHALK_WHITE, false)
 
 	_total_title_label.label_settings = ChalkTheme.make_label_settings(24, ChalkTheme.CHALK_DIM, true)
 	_total_title_label.text = tr("SCORES_TOTAL")
 
-	_total_value_label.label_settings = ChalkTheme.make_label_settings(58, ChalkTheme.CHALK_YELLOW, true)
+	_total_value_label.label_settings = ChalkTheme.make_label_settings(58, ChalkTheme.CHALK_RED, true)
 	var total := _view_model.get_total_score() if _view_model != null else 0
 	_total_value_label.text = str(total)
 
@@ -101,7 +100,7 @@ func refresh_ui() -> void:
 	_best_streak_title_label.label_settings = ChalkTheme.make_label_settings(20, ChalkTheme.CHALK_DIM, true)
 	_best_streak_title_label.text = tr("SCORES_BEST_STREAK")
 
-	_best_streak_value_label.label_settings = ChalkTheme.make_label_settings(32, ChalkTheme.CHALK_YELLOW, true)
+	_best_streak_value_label.label_settings = ChalkTheme.make_label_settings(32, ChalkTheme.CHALK_BLUE, true)
 	var best_streak := _view_model.get_best_streak() if _view_model != null else 0
 	_best_streak_value_label.text = str(best_streak)
 

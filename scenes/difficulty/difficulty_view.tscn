@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="3_chalkbtn"]
 [ext_resource type="Texture2D" uid="uid://drvn6onnj4eu5" path="res://resources/textures/icon_exit.png" id="4_iconexit"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
-[ext_resource type="Texture2D" uid="uid://bpreesx6o7cxl" path="res://resources/textures/mark_x_yellow.png" id="6_markx"]
+[ext_resource type="Texture2D" uid="uid://d34ufxh32wv0b" path="res://resources/textures/mark_x.png" id="6_markx"]
 [ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/DancingScript.ttf" id="7_71fx6"]
 [ext_resource type="Texture2D" uid="uid://blpr5mthxeho8" path="res://resources/textures/mark_o.png" id="7_marko"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="8_safearea"]
@@ -133,7 +133,7 @@ text_key = "DIFF_MEDIUM"
 subtitle_key = "DIFF_MEDIUM_SUB"
 badge_text = "×2"
 font_size = 36
-button_style = "primary"
+button_style = "secondary"
 
 [node name="BtnHard" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1123628595 instance=ExtResource("3_chalkbtn")]
 custom_minimum_size = Vector2(440, 96)

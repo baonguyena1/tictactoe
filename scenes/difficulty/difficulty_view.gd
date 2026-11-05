@@ -88,7 +88,7 @@ func refresh_ui() -> void:
 		return
 
 	_btn_back.refresh_content()
-	_title_banner.set_banner_text("DIFF_TITLE", ChalkTheme.CHALK_YELLOW, false)
+	_title_banner.set_banner_text("DIFF_TITLE", ChalkTheme.CHALK_WHITE, false)
 	_you_play_label.label_settings = ChalkTheme.make_label_settings(26, ChalkTheme.CHALK_WHITE, true)
 	_you_play_label.text = tr("DIFF_YOU_PLAY")
 
@@ -96,11 +96,11 @@ func refresh_ui() -> void:
 	var is_x := selected_mark == Domain.Mark.X
 
 	_btn_mark_x.set_text_key("X " + tr("DIFF_FIRST"))
-	_btn_mark_x.set_text_color(ChalkTheme.CHALK_YELLOW if is_x else ChalkTheme.CHALK_DIM)
+	_btn_mark_x.set_text_color(ChalkTheme.CHALK_RED if is_x else ChalkTheme.CHALK_DIM)
 	_btn_mark_x.modulate = Color.WHITE if is_x else Color(0.68, 0.68, 0.68, 0.85)
 
 	_btn_mark_o.set_text_key("O " + tr("DIFF_SECOND"))
-	_btn_mark_o.set_text_color(ChalkTheme.CHALK_YELLOW if not is_x else ChalkTheme.CHALK_DIM)
+	_btn_mark_o.set_text_color(ChalkTheme.CHALK_BLUE if not is_x else ChalkTheme.CHALK_DIM)
 	_btn_mark_o.modulate = Color.WHITE if not is_x else Color(0.68, 0.68, 0.68, 0.85)
 
 	_update_diff_item(_btn_easy, Domain.Difficulty.EASY, "DIFF_EASY", "DIFF_EASY_SUB")

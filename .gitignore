@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+build/
 
 # External third-party packages (equivalent to node_modules / Pods)
 # Managed via plug.gd (run: godot --headless -s plug.gd install)

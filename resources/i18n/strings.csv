@@ -72,3 +72,5 @@ MENU_PLAY_AI_SUB,5 Difficulty Levels · Challenge AI,5 Cấp độ • Thử th�
 MENU_TWO_PLAYERS_SUB,Local 2 Players on 1 Device,Đấu cờ đôi 1 thiết bị
 TAG_HOT,HOT 🔥,HOT 🔥
 TAG_QUEST,QUEST ⚔️,NHIỆM VỤ ⚔️
+MENU_RECORD,Record: {n} 🔥,Kỷ lục: {n} 🔥
+GAME_STREAK,Streak: {n}! (×{m}),Chuỗi thắng: {n}! (×{m})

@@ -111,7 +111,7 @@ stretch_mode = 5
 
 [node name="StreakLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge/StreakMargin/StreakContent" unique_id=2081944525]
 layout_mode = 2
-text = "Kỷ lục: 0 🔥"
+text = "Record: 0 🔥"
 label_settings = SubResource("LabelSettings_streak")
 
 [node name="TopSpacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow" unique_id=2081944526]

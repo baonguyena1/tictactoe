@@ -13,6 +13,9 @@ config_version=5
 config/name="tictactoe"
 run/main_scene="uid://chvhbv1yor2ei"
 config/features=PackedStringArray("4.7", "Mobile")
+boot_splash/bg_color=Color(0.95, 0.93, 0.89, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="res://resources/textures/splash_boot.png"
 config/icon="res://icon.png"
 
 [audio]
@@ -53,8 +56,8 @@ locale/translations=PackedStringArray("res://resources/i18n/strings.en.translati
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.95, 0.93, 0.89, 1)
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.95, 0.93, 0.89, 1)
