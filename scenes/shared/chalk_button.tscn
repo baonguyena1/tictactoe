@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scenes/shared/chalk_button.gd" id="1_chalkbtn"]
 
 [node name="ChalkButton" type="Control"]
-custom_minimum_size = Vector2(460, 92)
+custom_minimum_size = Vector2(200, 74)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 460.0
-offset_bottom = 92.0
+offset_right = 200.0
+offset_bottom = 74.0
 script = ExtResource("1_chalkbtn")

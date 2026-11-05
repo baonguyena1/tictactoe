@@ -6,49 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://drvn6onnj4eu5" path="res://resources/textures/icon_exit.png" id="4_iconexit"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://bpreesx6o7cxl" path="res://resources/textures/mark_x_yellow.png" id="6_markx"]
-[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/PatrickHand-Regular.ttf" id="7_71fx6"]
+[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/DancingScript.ttf" id="7_71fx6"]
 [ext_resource type="Texture2D" uid="uid://blpr5mthxeho8" path="res://resources/textures/mark_o.png" id="7_marko"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="8_safearea"]
 
 [sub_resource type="FontVariation" id="FontVariation_7762d"]
 base_font = ExtResource("7_71fx6")
-variation_embolden = 0.15
-variation_transform = Transform2D(1, 0, -0.14, 1, 0, 0)
+variation_embolden = 0.12
 
 [sub_resource type="LabelSettings" id="LabelSettings_jeklp"]
 font = SubResource("FontVariation_7762d")
 font_size = 26
 font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jb40f"]
-font = SubResource("FontVariation_7762d")
-font_size = 20
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_crmuv"]
-font = SubResource("FontVariation_7762d")
-font_size = 20
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xxdd5"]
-font = SubResource("FontVariation_7762d")
-font_size = 20
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2sjwn"]
-font = SubResource("FontVariation_7762d")
-font_size = 20
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jog1w"]
-font = SubResource("FontVariation_7762d")
-font_size = 20
-font_color = Color(0.48, 0.42, 0.38, 0.9)
 shadow_color = Color(0.9, 0.82, 0.7, 0.4)
 
 [node name="DifficultyView" type="Control" unique_id=1523688852]
@@ -120,120 +89,60 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="BtnMarkX" parent="GodotxSafeArea/ContentMargin/MainColumn/MarkRow" unique_id=1349416608 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(300, 78)
+custom_minimum_size = Vector2(240, 72)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text_key = "X DIFF_FIRST"
 icon_texture = ExtResource("6_markx")
-font_size = 26
-text_color = Color(0.76, 0.38, 0.1, 1)
+font_size = 32
+button_style = "primary"
 
 [node name="BtnMarkO" parent="GodotxSafeArea/ContentMargin/MainColumn/MarkRow" unique_id=338698101 instance=ExtResource("3_chalkbtn")]
 modulate = Color(0.68, 0.68, 0.68, 0.85)
-custom_minimum_size = Vector2(300, 78)
+custom_minimum_size = Vector2(240, 72)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text_key = "O DIFF_SECOND"
 icon_texture = ExtResource("7_marko")
-font_size = 26
-text_color = Color(0.48, 0.42, 0.38, 0.9)
+font_size = 32
+button_style = "secondary"
 
 [node name="ListBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=245937087]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 6
+theme_override_constants/separation = 18
 alignment = 1
 
-[node name="ItemEasy" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=209394048]
+[node name="BtnEasy" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1524764034 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(440, 96)
 layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="BtnEasy" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemEasy" unique_id=1524764034 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(580, 78)
-layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text_key = "DIFF_EASY"
+subtitle_key = "DIFF_EASY_SUB"
 badge_text = "×1"
-font_size = 30
-text_color = Color(0.12, 0.48, 0.22, 1)
+font_size = 36
+button_style = "normal"
 
-[node name="DescEasy" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemEasy" unique_id=1889001139]
+[node name="BtnMedium" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1999462970 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(440, 96)
 layout_mode = 2
-text = "DIFF_EASY_DESC"
-label_settings = SubResource("LabelSettings_jb40f")
-horizontal_alignment = 1
-
-[node name="ItemMedium" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1507471076]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="BtnMedium" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemMedium" unique_id=1999462970 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(580, 78)
-layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text_key = "DIFF_MEDIUM"
+subtitle_key = "DIFF_MEDIUM_SUB"
 badge_text = "×2"
-font_size = 30
+font_size = 36
+button_style = "primary"
 
-[node name="DescMedium" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemMedium" unique_id=1902120846]
+[node name="BtnHard" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1123628595 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(440, 96)
 layout_mode = 2
-text = "DIFF_MEDIUM_DESC"
-label_settings = SubResource("LabelSettings_crmuv")
-horizontal_alignment = 1
-
-[node name="ItemLearning" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=2027393339]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="BtnLearning" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemLearning" unique_id=1307040155 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(580, 78)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text_key = "DIFF_LEARNING"
-badge_text = "×3"
-font_size = 30
-text_color = Color(0.76, 0.38, 0.1, 1)
-
-[node name="DescLearning" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemLearning" unique_id=1961900786]
-layout_mode = 2
-text = "DIFF_LEARNING_DESC"
-label_settings = SubResource("LabelSettings_xxdd5")
-horizontal_alignment = 1
-
-[node name="ItemHard" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=1543560774]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="BtnHard" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemHard" unique_id=1123628595 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(580, 78)
-layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text_key = "DIFF_HARD"
+subtitle_key = "DIFF_HARD_SUB"
+tag_text = "DIFF_HARD_TAG"
 badge_text = "×4"
-font_size = 30
-text_color = Color(0.76, 0.38, 0.1, 1)
-
-[node name="DescHard" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemHard" unique_id=1862468676]
-layout_mode = 2
-text = "DIFF_HARD_DESC"
-label_settings = SubResource("LabelSettings_2sjwn")
-horizontal_alignment = 1
-
-[node name="ItemUnbeatable" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox" unique_id=337028216]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="BtnUnbeatable" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemUnbeatable" unique_id=729929491 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(580, 78)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text_key = "DIFF_UNBEATABLE"
-badge_text = "×8"
-font_size = 30
-text_color = Color(0.8, 0.18, 0.15, 1)
-
-[node name="DescUnbeatable" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ListBox/ItemUnbeatable" unique_id=2121400851]
-layout_mode = 2
-text = "DIFF_UNBEATABLE_DESC"
-label_settings = SubResource("LabelSettings_jog1w")
-horizontal_alignment = 1
+font_size = 36
+button_style = "accent"

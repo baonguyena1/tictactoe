@@ -5,8 +5,17 @@ extends UIFlowPage
 
 @onready var _btn_play_ai: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnPlayAI
 @onready var _btn_two_players: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnTwoPlayers
-@onready var _btn_scores: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnScores
-@onready var _btn_settings: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnSettings
+@onready var _btn_scores: ChalkButton = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/BtnScores") as ChalkButton
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/BtnScores")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BtnScores") as ChalkButton
+)
+@onready var _btn_settings: ChalkButton = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/BtnSettings") as ChalkButton
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/BtnSettings")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BtnSettings") as ChalkButton
+)
+@onready var _streak_label: Label = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge/StreakMargin/StreakContent/StreakLabel") as Label
 @onready var _skill_footer_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/SkillFooterLabel
 
 var _view_model: MainMenuViewModel
@@ -74,8 +83,13 @@ func refresh_ui() -> void:
 	_skill_footer_label.label_settings = ChalkTheme.make_label_settings(24, ChalkTheme.CHALK_GREEN, true)
 	if _view_model != null:
 		_skill_footer_label.text = _view_model.get_ai_skill_footer_text()
+		if _streak_label != null:
+			var best_streak := _view_model.get_best_streak()
+			_streak_label.text = "Kỷ lục: %d 🔥" % best_streak
 	else:
 		_skill_footer_label.text = tr("AI_SKILL_FOOTER").replace("{p}", "0")
+		if _streak_label != null:
+			_streak_label.text = "Kỷ lục: 0 🔥"
 
 
 ## Returns the Play vs AI button for testing or focus handling.

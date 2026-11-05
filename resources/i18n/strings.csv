@@ -19,12 +19,16 @@ DIFF_EASY,Easy,Dễ
 DIFF_EASY_DESC,Random moves with occasional blocks,Máy đi ngẫu nhiên và đôi khi chặn
 DIFF_MEDIUM,Medium,Vừa
 DIFF_MEDIUM_DESC,Blocks threats & prefers center/corners,Biết chặn và ưu tiên ô giữa / góc
-DIFF_LEARNING,Self-Learning (MENACE),Máy tự học (MENACE)
+DIFF_LEARNING,Self-Learning,Máy tự học
 DIFF_LEARNING_DESC,Learns and adapts after every match,Càng chơi nhiều càng thông minh
 DIFF_HARD,Hard,Khó
 DIFF_HARD_DESC,Minimax with 25% slight slip,Minimax nhưng 25% sơ hở nhẹ
 DIFF_UNBEATABLE,Unbeatable,Bất bại
 DIFF_UNBEATABLE_DESC,Perfect Minimax · Draw rewards points!,Minimax hoàn hảo · Hòa đã có điểm!
+DIFF_EASY_SUB,Casual play · Easy wins,Thư giãn · Đi ngẫu hứng
+DIFF_MEDIUM_SUB,Balanced · Clever tactics,Cân bằng · Thử thách vừa sức
+DIFF_HARD_SUB,Master AI · Minimax challenge,Đỉnh cao · Minimax bất bại
+DIFF_HARD_TAG,HOT 🔥,HOT 🔥
 GAME_YOU_X,You ({m}),Bạn ({m})
 GAME_AI_O,AI ({m}),Máy ({m})
 GAME_PLAYER_X,Player X,Người chơi X
@@ -46,7 +50,7 @@ SCORES_TITLE,High Scores,Sổ Ghi Điểm
 SCORES_TOTAL,Total Score,Tổng điểm tích lũy
 SCORES_BEST_GAME,Best Match,Ván cao nhất
 SCORES_BEST_STREAK,Best Streak,Chuỗi thắng kỷ lục
-SCORES_BY_DIFF,Record by Difficulty (W / D / L),Thống kê theo cấp độ (Thắng / Hòa / Thua)
+SCORES_BY_DIFF,Record by Difficulty,Chiến tích theo cấp độ
 SET_TITLE,Settings,Cài Đặt
 SET_SKIN,Theme Skin,Giao diện
 SET_SKIN_CHALK,Chalkboard,Bảng Phấn
@@ -63,3 +67,7 @@ SET_LANGUAGE,Language,Ngôn ngữ
 SET_LANG_VI,Tiếng Việt,Tiếng Việt
 SET_LANG_EN,English,English
 SET_RESET_AI,Reset Self-Learning AI Memory,Xóa trí nhớ Máy tự học
+MENU_PLAY_AI_SUB,5 Difficulty Levels · Challenge AI,5 Cấp độ • Thử thách AI
+MENU_TWO_PLAYERS_SUB,Local 2 Players on 1 Device,Đấu cờ đôi 1 thiết bị
+TAG_HOT,HOT 🔥,HOT 🔥
+TAG_QUEST,QUEST ⚔️,NHIỆM VỤ ⚔️

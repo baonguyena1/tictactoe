@@ -97,6 +97,13 @@ func get_last_outcome() -> Domain.Outcome:
 	return _last_outcome
 
 
+## Returns the active consecutive win streak against AI.
+func get_current_streak() -> int:
+	if _container != null and _container.score_repo != null:
+		return _container.score_repo.get_current_streak()
+	return 0
+
+
 ## Starts or resets a round on the 3x3 board. If AI plays X (human chose O), prepares the AI opening move.
 func start_new_round(play_wipe_sound: bool = false) -> void:
 	_board = Board.new()

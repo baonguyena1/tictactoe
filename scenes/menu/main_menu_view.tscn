@@ -4,16 +4,37 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
 [ext_resource type="Texture2D" uid="uid://ceb7bnnkiqe4k" path="res://resources/textures/title.png" id="3_title"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="4_chalkbtn"]
-[ext_resource type="Texture2D" uid="uid://dqkxffg3garkq" path="res://resources/textures/icon_play.png" id="5_iconplay"]
-[ext_resource type="Texture2D" uid="uid://dgm6gskjk6v22" path="res://resources/textures/trophy.png" id="6_trophy"]
-[ext_resource type="Texture2D" uid="uid://dc4dnnwub6ng5" path="res://resources/textures/star.png" id="7_star"]
-[ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="8_safearea"]
-[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/PatrickHand-Regular.ttf" id="9_0lvjg"]
+[ext_resource type="Texture2D" path="res://resources/textures/quest_robot.png" id="5_questrobot"]
+[ext_resource type="Texture2D" path="res://resources/textures/quest_swords.png" id="6_questswords"]
+[ext_resource type="Texture2D" path="res://resources/textures/quest_chest.png" id="7_questchest"]
+[ext_resource type="Texture2D" path="res://resources/textures/quest_gear.png" id="8_questgear"]
+[ext_resource type="Texture2D" path="res://resources/textures/quest_flame.png" id="9_questflame"]
+[ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="10_safearea"]
+[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/DancingScript.ttf" id="11_dancing"]
 
 [sub_resource type="FontVariation" id="FontVariation_7762d"]
-base_font = ExtResource("9_0lvjg")
-variation_embolden = 0.15
-variation_transform = Transform2D(1, 0, -0.14, 1, 0, 0)
+base_font = ExtResource("11_dancing")
+variation_embolden = 0.12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_streak"]
+bg_color = Color(0.99, 0.98, 0.95, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.45, 0.15, 0.42)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.15, 0.12, 0.08, 0.1)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_streak"]
+font = SubResource("FontVariation_7762d")
+font_size = 24
+font_color = Color(0.85, 0.45, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dehia"]
 font = SubResource("FontVariation_7762d")
@@ -42,7 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("8_safearea")
+script = ExtResource("10_safearea")
 
 [node name="ContentMargin" type="MarginContainer" parent="GodotxSafeArea" unique_id=1849201948]
 layout_mode = 1
@@ -52,18 +73,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 36
+theme_override_constants/margin_left = 28
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 36
+theme_override_constants/margin_right = 28
 theme_override_constants/margin_bottom = 24
 
 [node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=12968886]
 layout_mode = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 18
 alignment = 1
 
+[node name="TopBarRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2081944520]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StreakBadge" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow" unique_id=2081944521]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_streak")
+
+[node name="StreakMargin" type="MarginContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge" unique_id=2081944522]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 4
+
+[node name="StreakContent" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge/StreakMargin" unique_id=2081944523]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FlameIcon" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge/StreakMargin/StreakContent" unique_id=2081944524]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("9_questflame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StreakLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow/StreakBadge/StreakMargin/StreakContent" unique_id=2081944525]
+layout_mode = 2
+text = "Kỷ lục: 0 🔥"
+label_settings = SubResource("LabelSettings_streak")
+
+[node name="TopSpacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow" unique_id=2081944526]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnScores" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow" unique_id=1642151581 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(74, 68)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon_texture = ExtResource("7_questchest")
+
+[node name="BtnSettings" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBarRow" unique_id=406097960 instance=ExtResource("4_chalkbtn")]
+custom_minimum_size = Vector2(74, 68)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon_texture = ExtResource("8_questgear")
+
 [node name="SpacerTop" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1035159947]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="TitleArt" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1490658805]
@@ -75,36 +143,32 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="SpacerMiddle" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2088737999]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="BtnPlayAI" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=130550604 instance=ExtResource("4_chalkbtn")]
-custom_minimum_size = Vector2(460, 88)
+custom_minimum_size = Vector2(440, 96)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text_key = "MENU_PLAY_AI"
-icon_texture = ExtResource("5_iconplay")
+subtitle_key = "MENU_PLAY_AI_SUB"
+tag_text = "TAG_HOT"
+icon_texture = ExtResource("5_questrobot")
+font_size = 38
+button_style = "primary"
+is_hero_pulse = true
 
 [node name="BtnTwoPlayers" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=134461922 instance=ExtResource("4_chalkbtn")]
-custom_minimum_size = Vector2(460, 88)
+custom_minimum_size = Vector2(440, 96)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text_key = "MENU_TWO_PLAYERS"
-icon_texture = ExtResource("5_iconplay")
-
-[node name="BtnScores" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1642151581 instance=ExtResource("4_chalkbtn")]
-custom_minimum_size = Vector2(460, 88)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text_key = "MENU_SCORES"
-icon_texture = ExtResource("6_trophy")
-
-[node name="BtnSettings" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=406097960 instance=ExtResource("4_chalkbtn")]
-custom_minimum_size = Vector2(460, 88)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text_key = "MENU_SETTINGS"
-icon_texture = ExtResource("7_star")
+subtitle_key = "MENU_TWO_PLAYERS_SUB"
+icon_texture = ExtResource("6_questswords")
+font_size = 38
+button_style = "secondary"
 
 [node name="SpacerBottom" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1454056620]
 layout_mode = 2

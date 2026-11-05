@@ -7,10 +7,26 @@
 [ext_resource type="Texture2D" uid="uid://bwxguggdujde8" path="res://resources/textures/icon_reset.png" id="5_iconreset"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="6_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://bq4u53100uueq" path="res://resources/textures/board.png" id="7_board"]
-[ext_resource type="Texture2D" uid="uid://b2ud2qur0oiyu" path="res://resources/textures/win_frame.png" id="8_winframe"]
 [ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="9_trophylaurel"]
-[ext_resource type="Material" uid="uid://eb5l1tg4gg1s" path="res://scenes/shared/liquid_glass_material.tres" id="10_liquidglass"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="11_safearea"]
+[ext_resource type="Texture2D" uid="uid://c22a1tk0myoq0" path="res://resources/textures/chalk_brush.png" id="12_chalkbrush"]
+[ext_resource type="Texture2D" uid="uid://5xgq1hw1beqp" path="res://resources/textures/ai_face_normal.png" id="13_aiface"]
+[ext_resource type="Texture2D" uid="uid://hy0r0ym1eqit" path="res://resources/textures/quest_flame.png" id="14_questflame"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.97, 0.94, 0.88, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.22, 0.18, 0.38)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.12, 0.09, 0.07, 0.25)
+shadow_size = 20
+shadow_offset = Vector2(0, 10)
 
 [node name="GameView" type="Control" unique_id=1053425094]
 layout_mode = 3
@@ -49,12 +65,7 @@ theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 24
 
 [node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=1061552608]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/separation = 14
 
 [node name="TopBar" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=844008085]
@@ -113,7 +124,19 @@ horizontal_alignment = 1
 [node name="P2Col" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow" unique_id=40254057]
 layout_mode = 2
 
-[node name="P2TitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col" unique_id=1258088300]
+[node name="P2Header" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col" unique_id=2081944540]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="AiAvatarRect" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header" unique_id=2081944530]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("13_aiface")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="P2TitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header" unique_id=1258088300]
 layout_mode = 2
 horizontal_alignment = 1
 
@@ -121,6 +144,23 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
+
+[node name="StreakBadge" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2081944531]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="FlameIcon" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/StreakBadge" unique_id=2081944532]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("14_questflame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StreakLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/StreakBadge" unique_id=2081944533]
+layout_mode = 2
+text = "Chuỗi thắng: 2! (x1.5)"
 
 [node name="TurnBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1492335644 instance=ExtResource("6_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
@@ -383,9 +423,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HintLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1513633809]
-layout_mode = 2
-horizontal_alignment = 1
+[node name="ShadowStrikeLine" type="Line2D" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer" unique_id=2081944514]
+width = 32.0
+default_color = Color(0.2, 0.16, 0.12, 0.2)
+texture = ExtResource("12_chalkbrush")
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ChalkStrikeLine" type="Line2D" parent="GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer" unique_id=2081944515]
+width = 28.0
+default_color = Color(0.8, 0.18, 0.15, 1)
+texture = ExtResource("12_chalkbrush")
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="ResultOverlay" type="Control" parent="." unique_id=95662507]
 visible = false
@@ -397,14 +449,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Dimmer" type="ColorRect" parent="ResultOverlay" unique_id=470043442]
-material = ExtResource("10_liquidglass")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12, 0.09, 0.07, 0.55)
+color = Color(0.14, 0.11, 0.09, 0.45)
 
 [node name="Center" type="CenterContainer" parent="ResultOverlay" unique_id=19174167]
 layout_mode = 1
@@ -414,55 +465,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" type="Control" parent="ResultOverlay/Center" unique_id=1494462192]
-custom_minimum_size = Vector2(620, 680)
+[node name="Card" type="PanelContainer" parent="ResultOverlay/Center" unique_id=1494462192]
+custom_minimum_size = Vector2(540, 460)
 layout_mode = 2
-
-[node name="CardPaperBg" type="ColorRect" parent="ResultOverlay/Center/Card" unique_id=2081944512]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = -18.0
-offset_bottom = -18.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.95, 0.91, 0.82, 0.96)
-
-[node name="FrameRect" type="TextureRect" parent="ResultOverlay/Center/Card" unique_id=1069524560]
-modulate = Color(0.24, 0.2, 0.17, 0.95)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_winframe")
-expand_mode = 1
-stretch_mode = 5
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
 [node name="CardMargin" type="MarginContainer" parent="ResultOverlay/Center/Card" unique_id=1474408279]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 56
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 56
-theme_override_constants/margin_bottom = 64
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
 
 [node name="CardVBox" type="VBoxContainer" parent="ResultOverlay/Center/Card/CardMargin" unique_id=485983442]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="TrophyRect" type="TextureRect" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=60363636]
 modulate = Color(0.76, 0.38, 0.1, 1)
-custom_minimum_size = Vector2(180, 140)
+custom_minimum_size = Vector2(160, 120)
 layout_mode = 2
 texture = ExtResource("9_trophylaurel")
 expand_mode = 1
@@ -476,18 +498,24 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="BtnPlayAgain" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=999735526 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(460, 84)
+[node name="ButtonsRow" type="HBoxContainer" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=2081944516]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BtnPlayAgain" parent="ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow" unique_id=999735526 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(220, 76)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text_key = "RESULT_PLAY_AGAIN"
 icon_texture = ExtResource("5_iconreset")
-font_size = 32
+font_size = 36
+button_style = "primary"
 
-[node name="BtnResultMenu" parent="ResultOverlay/Center/Card/CardMargin/CardVBox" unique_id=1510802881 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(460, 84)
+[node name="BtnResultMenu" parent="ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow" unique_id=1510802881 instance=ExtResource("3_chalkbtn")]
+custom_minimum_size = Vector2(210, 76)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text_key = "BTN_MENU"
 icon_texture = ExtResource("4_iconexit")
-font_size = 32
+font_size = 36

@@ -76,7 +76,7 @@ func play_outcome(outcome: Domain.Outcome) -> void:
 func _setup_players(host_node: Node) -> void:
 	_bgm_player = AudioStreamPlayer.new()
 	_bgm_player.bus = &"Music" if AudioServer.get_bus_index(&"Music") >= 0 else &"Master"
-	_bgm_player.volume_db = 0.0
+	_bgm_player.volume_db = -8.0
 	var bgm_stream := load(SOUND_BGM) as AudioStreamWAV
 	if bgm_stream != null:
 		bgm_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD

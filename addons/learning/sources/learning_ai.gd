@@ -37,12 +37,27 @@ func on_game_started() -> void:
 	_episode_history.clear()
 
 
-## Chooses a move on `board` using weighted random sampling over the bead counts for `board.state_key()`.
-func choose_move(board: Board, _me: Domain.Mark) -> int:
+## Chooses a move on `board` using weighted random sampling over the bead counts for `board.state_key()`,
+## augmented with basic tactical reflex (wins immediately if possible, blocks 1-move threats).
+func choose_move(board: Board, me: Domain.Mark) -> int:
 	var empty := board.empty_indices()
 	if empty.is_empty():
 		return -1
 
+	# Rule 1: Immediate win opportunity
+	var win_move := _find_winning_move(board, me)
+	if win_move >= 0:
+		_record_move(board, win_move)
+		return win_move
+
+	# Rule 2: Immediate opponent win block (85% chance to defend against blunder)
+	var opponent := Domain.opponent(me)
+	var block_move := _find_winning_move(board, opponent)
+	if block_move >= 0 and _rng.randf() < 0.85:
+		_record_move(board, block_move)
+		return block_move
+
+	# Rule 3: Use weighted bead sampling from learned state table
 	var key := board.state_key()
 	var state_table: Dictionary = _ensure_state_table(key, empty)
 
@@ -62,6 +77,22 @@ func choose_move(board: Board, _me: Domain.Mark) -> int:
 
 	_episode_history.append({"key": key, "move": chosen_move})
 	return chosen_move
+
+
+func _record_move(board: Board, move_idx: int) -> void:
+	var key := board.state_key()
+	_ensure_state_table(key, board.empty_indices())
+	_episode_history.append({"key": key, "move": move_idx})
+
+
+## Finds a winning move for `mark` if one exists on `board`, or returns -1 if none.
+func _find_winning_move(board: Board, mark: Domain.Mark) -> int:
+	for idx in board.empty_indices():
+		var candidate := board.placing(mark, idx)
+		var win := candidate.winner()
+		if not win.is_empty() and win.get("mark") == mark:
+			return idx
+	return -1
 
 
 ## Updates bead counts for all moves played in the finished match and persists them via `_store`.

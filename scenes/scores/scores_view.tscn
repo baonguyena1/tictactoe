@@ -7,114 +7,137 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="6_trophylaurel"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="7_safearea"]
-[ext_resource type="FontFile" uid="uid://dxm0j1vija5o2" path="res://resources/fonts/PatrickHand-Regular.ttf" id="8_34uv3"]
+[ext_resource type="Texture2D" uid="uid://176a184805a55" path="res://resources/textures/quest_gear.png" id="8_questgear"]
+[ext_resource type="Texture2D" uid="uid://98b7f8258cc83" path="res://resources/textures/quest_swords.png" id="9_questswords"]
+[ext_resource type="Texture2D" uid="uid://23dc47829561e" path="res://resources/textures/quest_flame.png" id="10_questflame"]
 
-[sub_resource type="FontVariation" id="FontVariation_7762d"]
-base_font = ExtResource("8_34uv3")
-variation_embolden = 0.15
-variation_transform = Transform2D(1, 0, -0.14, 1, 0, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_summary"]
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+bg_color = Color(0.99, 0.98, 0.95, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.84, 0.78, 0.68, 0.8)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0.18, 0.14, 0.1, 0.08)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
 
-[sub_resource type="LabelSettings" id="LabelSettings_pgg2k"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_divider"]
+color = Color(0.86, 0.8, 0.72, 0.7)
+thickness = 1
 
-[sub_resource type="LabelSettings" id="LabelSettings_mxdr4"]
-font = SubResource("FontVariation_7762d")
-font_size = 56
-font_color = Color(0.76, 0.38, 0.1, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_easy"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.99, 0.98, 0.95, 0.95)
+border_width_left = 5
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.84, 0.78, 0.7, 0.75)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0.18, 0.14, 0.1, 0.08)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jtn60"]
-font = SubResource("FontVariation_7762d")
-font_size = 22
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_medium"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.99, 0.98, 0.95, 0.95)
+border_width_left = 5
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.84, 0.78, 0.7, 0.75)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0.18, 0.14, 0.1, 0.08)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_blgg5"]
-font = SubResource("FontVariation_7762d")
-font_size = 34
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_hard"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.99, 0.98, 0.95, 0.95)
+border_width_left = 5
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.84, 0.78, 0.7, 0.75)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0.18, 0.14, 0.1, 0.08)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_exuwq"]
-font = SubResource("FontVariation_7762d")
-font_size = 22
-font_color = Color(0.48, 0.42, 0.38, 0.9)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill_wins"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.9, 0.96, 0.9, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.7, 0.4, 0.45)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_i1a0u"]
-font = SubResource("FontVariation_7762d")
-font_size = 34
-font_color = Color(0.76, 0.38, 0.1, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill_draws"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.93, 0.94, 0.96, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.5, 0.65, 0.4)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_0drlv"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.76, 0.38, 0.1, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_y63rx"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_r6l6i"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xe1i1"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_m3wv1"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wukpn"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_m36j3"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_k75ux"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_36d11"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_k0n6f"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.18, 0.15, 0.13, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_cpchl"]
-font = SubResource("FontVariation_7762d")
-font_size = 26
-font_color = Color(0.12, 0.48, 0.22, 1)
-shadow_color = Color(0.9, 0.82, 0.7, 0.4)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pill_losses"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.98, 0.9, 0.9, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.35, 0.35, 0.45)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ScoresView" type="Control" unique_id=898914992]
 layout_mode = 3
@@ -150,7 +173,7 @@ mouse_filter = 2
 theme_override_constants/margin_left = 36
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 36
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=559667824]
 layout_mode = 1
@@ -159,7 +182,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 12
 
 [node name="TopRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1140671186]
 layout_mode = 2
@@ -179,146 +202,369 @@ mouse_filter = 2
 text_key = "SCORES_TITLE"
 
 [node name="TrophyRect" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1442731436]
-custom_minimum_size = Vector2(160, 120)
+custom_minimum_size = Vector2(240, 80)
 layout_mode = 2
 texture = ExtResource("6_trophylaurel")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SummaryBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1537419970]
+[node name="SummaryCard" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1010101]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_summary")
+
+[node name="SummaryBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard" unique_id=1537419970]
+layout_mode = 2
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="TotalTitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=1922469895]
+[node name="TotalTitleLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox" unique_id=1922469895]
 layout_mode = 2
 text = "SCORES_TOTAL"
-label_settings = SubResource("LabelSettings_pgg2k")
 horizontal_alignment = 1
 
-[node name="TotalValueLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=1605848888]
+[node name="TotalValueLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox" unique_id=1605848888]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_mxdr4")
 horizontal_alignment = 1
 
-[node name="SubSummaryRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox" unique_id=289685510]
+[node name="Divider" type="HSeparator" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox" unique_id=1010102]
 layout_mode = 2
-theme_override_constants/separation = 48
+theme_override_styles/separator = SubResource("StyleBoxLine_divider")
+
+[node name="SubSummaryRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox" unique_id=289685510]
+layout_mode = 2
 alignment = 1
 
-[node name="BestGameCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow" unique_id=231779617]
+[node name="BestGameCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow" unique_id=231779617]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="BestGameTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1827318673]
+[node name="BestGameTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1827318673]
 layout_mode = 2
 text = "SCORES_BEST_GAME"
-label_settings = SubResource("LabelSettings_jtn60")
 horizontal_alignment = 1
 
-[node name="BestGameValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1458184556]
+[node name="BestGameValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow/BestGameCol" unique_id=1458184556]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_blgg5")
 horizontal_alignment = 1
 
-[node name="BestStreakCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow" unique_id=1623811535]
+[node name="BestStreakCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow" unique_id=1623811535]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="BestStreakTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=1120759393]
+[node name="BestStreakTitle" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=1120759393]
 layout_mode = 2
 text = "SCORES_BEST_STREAK"
-label_settings = SubResource("LabelSettings_exuwq")
 horizontal_alignment = 1
 
-[node name="BestStreakValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=447654809]
+[node name="BestStreakValue" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard/SummaryBox/SubSummaryRow/BestStreakCol" unique_id=447654809]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_i1a0u")
 horizontal_alignment = 1
 
 [node name="SectionDiffLabel" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=412775731]
 layout_mode = 2
 text = "SCORES_BY_DIFF"
-label_settings = SubResource("LabelSettings_0drlv")
 horizontal_alignment = 1
 
 [node name="TableBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=312186547]
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 12
 
-[node name="RowEasy" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=172297177]
+[node name="CardEasy" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=201]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_easy")
 
-[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowEasy" unique_id=1629599764]
+[node name="HBox" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy" unique_id=202]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox" unique_id=203]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_questgear")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox" unique_id=204]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/LeftCol" unique_id=205]
+layout_mode = 2
+text = "DIFF_EASY"
+
+[node name="Tag" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/LeftCol" unique_id=206]
+layout_mode = 2
+text = "×1"
+
+[node name="Spacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox" unique_id=207]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "DIFF_EASY (×1)"
-label_settings = SubResource("LabelSettings_y63rx")
 
-[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowEasy" unique_id=1127506038]
+[node name="Badges" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox" unique_id=208]
 layout_mode = 2
-text = "0  /  0  /  0"
-label_settings = SubResource("LabelSettings_r6l6i")
-horizontal_alignment = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 
-[node name="RowMedium" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=1817559550]
+[node name="PillWins" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges" unique_id=209]
+custom_minimum_size = Vector2(74, 52)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_wins")
 
-[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowMedium" unique_id=802626203]
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillWins" unique_id=210]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillWins/VBox" unique_id=211]
+layout_mode = 2
+text = "Thắng"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillWins/VBox" unique_id=212]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PillDraws" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges" unique_id=213]
+custom_minimum_size = Vector2(74, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_draws")
+
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillDraws" unique_id=214]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillDraws/VBox" unique_id=215]
+layout_mode = 2
+text = "Hòa"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillDraws/VBox" unique_id=216]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PillLosses" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges" unique_id=217]
+custom_minimum_size = Vector2(74, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_losses")
+
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillLosses" unique_id=218]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillLosses/VBox" unique_id=219]
+layout_mode = 2
+text = "Thua"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardEasy/HBox/Badges/PillLosses/VBox" unique_id=220]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="CardMedium" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=301]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_medium")
+
+[node name="HBox" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium" unique_id=302]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox" unique_id=303]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_questswords")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox" unique_id=304]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/LeftCol" unique_id=305]
+layout_mode = 2
+text = "DIFF_MEDIUM"
+
+[node name="Tag" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/LeftCol" unique_id=306]
+layout_mode = 2
+text = "×2"
+
+[node name="Spacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox" unique_id=307]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "DIFF_MEDIUM (×2)"
-label_settings = SubResource("LabelSettings_xe1i1")
 
-[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowMedium" unique_id=1381316712]
+[node name="Badges" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox" unique_id=308]
 layout_mode = 2
-text = "0  /  0  /  0"
-label_settings = SubResource("LabelSettings_m3wv1")
-horizontal_alignment = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 
-[node name="RowLearning" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=278363225]
+[node name="PillWins" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges" unique_id=309]
+custom_minimum_size = Vector2(74, 52)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_wins")
 
-[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowLearning" unique_id=87797852]
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillWins" unique_id=310]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillWins/VBox" unique_id=311]
+layout_mode = 2
+text = "Thắng"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillWins/VBox" unique_id=312]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PillDraws" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges" unique_id=313]
+custom_minimum_size = Vector2(74, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_draws")
+
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillDraws" unique_id=314]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillDraws/VBox" unique_id=315]
+layout_mode = 2
+text = "Hòa"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillDraws/VBox" unique_id=316]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PillLosses" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges" unique_id=317]
+custom_minimum_size = Vector2(74, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_losses")
+
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillLosses" unique_id=318]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillLosses/VBox" unique_id=319]
+layout_mode = 2
+text = "Thua"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardMedium/HBox/Badges/PillLosses/VBox" unique_id=320]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="CardHard" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=401]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_hard")
+
+[node name="HBox" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard" unique_id=402]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox" unique_id=403]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_questflame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftCol" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox" unique_id=404]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/LeftCol" unique_id=405]
+layout_mode = 2
+text = "DIFF_HARD"
+
+[node name="Tag" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/LeftCol" unique_id=406]
+layout_mode = 2
+text = "×4"
+
+[node name="Spacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox" unique_id=407]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "DIFF_LEARNING (×3)"
-label_settings = SubResource("LabelSettings_wukpn")
 
-[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowLearning" unique_id=1831316011]
+[node name="Badges" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox" unique_id=408]
 layout_mode = 2
-text = "0  /  0  /  0"
-label_settings = SubResource("LabelSettings_m36j3")
-horizontal_alignment = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 
-[node name="RowHard" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=1823494564]
+[node name="PillWins" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges" unique_id=409]
+custom_minimum_size = Vector2(74, 52)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_wins")
 
-[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowHard" unique_id=556112821]
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillWins" unique_id=410]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "DIFF_HARD (×4)"
-label_settings = SubResource("LabelSettings_k75ux")
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowHard" unique_id=1206200208]
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillWins/VBox" unique_id=411]
 layout_mode = 2
-text = "0  /  0  /  0"
-label_settings = SubResource("LabelSettings_36d11")
-horizontal_alignment = 2
+text = "Thắng"
+horizontal_alignment = 1
 
-[node name="RowUnbeatable" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=558420165]
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillWins/VBox" unique_id=412]
 layout_mode = 2
+text = "0"
+horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowUnbeatable" unique_id=263421244]
+[node name="PillDraws" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges" unique_id=413]
+custom_minimum_size = Vector2(74, 52)
 layout_mode = 2
-size_flags_horizontal = 3
-text = "DIFF_UNBEATABLE (×8)"
-label_settings = SubResource("LabelSettings_k0n6f")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_draws")
 
-[node name="Stats" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/RowUnbeatable" unique_id=1498573090]
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillDraws" unique_id=414]
 layout_mode = 2
-text = "0  /  0  /  0"
-label_settings = SubResource("LabelSettings_cpchl")
-horizontal_alignment = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillDraws/VBox" unique_id=415]
+layout_mode = 2
+text = "Hòa"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillDraws/VBox" unique_id=416]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="PillLosses" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges" unique_id=417]
+custom_minimum_size = Vector2(74, 52)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pill_losses")
+
+[node name="VBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillLosses" unique_id=418]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillLosses/VBox" unique_id=419]
+layout_mode = 2
+text = "Thua"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox/CardHard/HBox/Badges/PillLosses/VBox" unique_id=420]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1

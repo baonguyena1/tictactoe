@@ -30,24 +30,25 @@ func choose_move(board: Board, me: Domain.Mark) -> int:
 		Domain.Difficulty.MEDIUM:
 			return _choose_medium(board, me, empty)
 		Domain.Difficulty.HARD:
-			var ranked := ranked_moves(board, me)
-			if ranked.size() > 1 and _rng.randf() < 0.25:
-				return ranked[1]["move"]
-			return ranked[0]["move"]
+			return _choose_hard(board, me)
 		_:
-			return ranked_moves(board, me)[0]["move"]
+			return _choose_hard(board, me)
 
 
-## Easy mode: 20% chance to block an immediate opponent win, otherwise picks a random empty cell.
+## Easy mode: 40% chance to take an immediate win, 30% chance to block an immediate threat, otherwise random.
 func _choose_easy(board: Board, me: Domain.Mark, empty: Array[int]) -> int:
-	if _rng.randf() < 0.20:
+	if _rng.randf() < 0.40:
+		var win := _find_winning_move(board, me)
+		if win >= 0:
+			return win
+	if _rng.randf() < 0.30:
 		var block := _find_winning_move(board, Domain.opponent(me))
 		if block >= 0:
 			return block
 	return empty[_rng.randi_range(0, empty.size() - 1)]
 
 
-## Medium mode: Win immediately -> Block opponent -> Take center (4) -> Take corner -> Random.
+## Medium mode: Always wins immediately -> Always blocks 1-move threat -> Favors center when empty -> Mixes corners & edges to allow fork tactics.
 func _choose_medium(board: Board, me: Domain.Mark, empty: Array[int]) -> int:
 	var win_now := _find_winning_move(board, me)
 	if win_now >= 0:
@@ -57,17 +58,53 @@ func _choose_medium(board: Board, me: Domain.Mark, empty: Array[int]) -> int:
 	if block_now >= 0:
 		return block_now
 
-	if board.cell_at(4) == Domain.Mark.NONE:
+	# On an empty board, always take center (4)
+	if board.moves_played() == 0 and board.cell_at(4) == Domain.Mark.NONE:
 		return 4
 
+	# If center is available later, take it 50% of the time
+	if board.cell_at(4) == Domain.Mark.NONE and _rng.randf() < 0.50:
+		return 4
+
+	# Positional choice: 55% corners, 45% edges/any empty cell (enables smart fork wins)
 	var corners: Array[int] = []
 	for c in [0, 2, 6, 8]:
 		if board.cell_at(c) == Domain.Mark.NONE:
 			corners.append(c)
-	if not corners.is_empty():
+
+	if not corners.is_empty() and _rng.randf() < 0.55:
 		return corners[_rng.randi_range(0, corners.size() - 1)]
 
 	return empty[_rng.randi_range(0, empty.size() - 1)]
+
+
+## Hard mode: Always wins immediately -> Always blocks 1-move threat -> Minimax with Alpha-Beta pruning (never throws game).
+func _choose_hard(board: Board, me: Domain.Mark) -> int:
+	var win_now := _find_winning_move(board, me)
+	if win_now >= 0:
+		return win_now
+
+	var block_now := _find_winning_move(board, Domain.opponent(me))
+	if block_now >= 0:
+		return block_now
+
+	var ranked := ranked_moves(board, me)
+	if ranked.is_empty():
+		return -1
+
+	# Randomly pick among tied best moves for natural tactical variety
+	var best_score: int = ranked[0]["score"]
+	var best_moves: Array[int] = []
+	for candidate in ranked:
+		if candidate["score"] == best_score:
+			best_moves.append(candidate["move"])
+		else:
+			break
+
+	if not best_moves.is_empty():
+		return best_moves[_rng.randi_range(0, best_moves.size() - 1)]
+
+	return ranked[0]["move"]
 
 
 ## Evaluates all available moves using Minimax and returns them sorted from best to worst:

@@ -26,6 +26,20 @@ func get_ai_skill_footer_text() -> String:
 	return tr("AI_SKILL_FOOTER").replace("{p}", str(pct))
 
 
+## Returns the best win streak against AI.
+func get_best_streak() -> int:
+	if _container != null and _container.score_repo != null:
+		return _container.score_repo.get_best_streak()
+	return 0
+
+
+## Returns the cumulative total score.
+func get_total_score() -> int:
+	if _container != null and _container.score_repo != null:
+		return _container.score_repo.get_total_score()
+	return 0
+
+
 ## Refreshes state when the Main Menu becomes visible again (e.g. after popping or dismissing Settings).
 func refresh() -> void:
 	state_changed.emit()

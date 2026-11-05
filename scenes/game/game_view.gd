@@ -16,19 +16,39 @@ const RESULT_OVERLAY_DELAY := 0.45
 @onready var _p1_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P1Col/P1ScoreLabel
 @onready var _draws_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsTitleLabel
 @onready var _draws_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/DrawsCol/DrawsScoreLabel
-@onready var _p2_title_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2TitleLabel
+@onready var _p2_title_label: Label = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel") as Label
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/P2TitleLabel")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2TitleLabel") as Label
+)
 @onready var _p2_score_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2ScoreLabel
 @onready var _turn_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TurnBanner
 @onready var _board_area: Control = $GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea
 @onready var _winning_line_layer: Control = $GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer
-@onready var _hint_label: Label = $GodotxSafeArea/ContentMargin/MainColumn/HintLabel
+@onready var _shadow_strike_line: Line2D = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer/ShadowStrikeLine") as Line2D
+@onready var _chalk_strike_line: Line2D = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/BoardCenter/BoardArea/WinningLineLayer/ChalkStrikeLine") as Line2D
+@onready var _ai_avatar_rect: TextureRect = (
+	get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect") as TextureRect
+	if has_node("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/P2Header/AiAvatarRect")
+	else get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/ScoreRow/P2Col/AiAvatarRect") as TextureRect
+)
+@onready var _streak_badge: HBoxContainer = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/StreakBadge") as HBoxContainer
+@onready var _streak_label: Label = get_node_or_null("GodotxSafeArea/ContentMargin/MainColumn/StreakBadge/StreakLabel") as Label
 
 @onready var _result_overlay: Control = $ResultOverlay
 @onready var _result_card: Control = $ResultOverlay/Center/Card
 @onready var _result_title_label: Label = $ResultOverlay/Center/Card/CardMargin/CardVBox/ResultTitleLabel
 @onready var _result_points_label: Label = $ResultOverlay/Center/Card/CardMargin/CardVBox/ResultPointsLabel
-@onready var _btn_play_again: ChalkButton = $ResultOverlay/Center/Card/CardMargin/CardVBox/BtnPlayAgain
-@onready var _btn_result_menu: ChalkButton = $ResultOverlay/Center/Card/CardMargin/CardVBox/BtnResultMenu
+@onready var _btn_play_again: ChalkButton = (
+	get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnPlayAgain") as ChalkButton
+	if has_node("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnPlayAgain")
+	else get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/BtnPlayAgain") as ChalkButton
+)
+@onready var _btn_result_menu: ChalkButton = (
+	get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnResultMenu") as ChalkButton
+	if has_node("ResultOverlay/Center/Card/CardMargin/CardVBox/ButtonsRow/BtnResultMenu")
+	else get_node_or_null("ResultOverlay/Center/Card/CardMargin/CardVBox/BtnResultMenu") as ChalkButton
+)
 
 var _view_model: GameViewModel
 var _cell_buttons: Array[Control] = []
@@ -90,7 +110,13 @@ func refresh_ui() -> void:
 	_btn_reset.refresh_content()
 	_btn_play_again.refresh_content()
 	_btn_result_menu.refresh_content()
-	_hint_label.text = tr("GAME_TAP_HINT_CHALK")
+
+	_p1_title_label.label_settings = ChalkTheme.make_label_settings(28, ChalkTheme.CHALK_WHITE, true)
+	_p1_score_label.label_settings = ChalkTheme.make_label_settings(44, ChalkTheme.CHALK_RED, true)
+	_draws_title_label.label_settings = ChalkTheme.make_label_settings(26, ChalkTheme.CHALK_DIM, true)
+	_draws_score_label.label_settings = ChalkTheme.make_label_settings(40, ChalkTheme.CHALK_DIM, true)
+	_p2_title_label.label_settings = ChalkTheme.make_label_settings(28, ChalkTheme.CHALK_WHITE, true)
+	_p2_score_label.label_settings = ChalkTheme.make_label_settings(44, ChalkTheme.CHALK_BLUE, true)
 
 	if _view_model == null:
 		_turn_banner.set_banner_text("GAME_YOUR_TURN", ChalkTheme.CHALK_YELLOW, false)
@@ -113,6 +139,10 @@ func refresh_ui() -> void:
 	_p1_score_label.text = str(_view_model.player_1_wins)
 	_draws_score_label.text = str(_view_model.draws)
 	_p2_score_label.text = str(_view_model.player_2_wins)
+
+	if _ai_avatar_rect != null:
+		_ai_avatar_rect.visible = not _view_model.get_config().is_two_player
+	_update_streak_badge()
 
 	var banner_color := ChalkTheme.CHALK_YELLOW
 	if _view_model.is_ai_thinking():
@@ -190,8 +220,11 @@ func _on_vm_cell_marked(cell_index: int, mark: Domain.Mark) -> void:
 		).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 		_spawn_chalk_dust_burst(_cell_buttons[cell_index].position + _cell_buttons[cell_index].size * 0.5, mark)
+		_shake_board()
+		_check_ai_threat_reaction(mark)
 	else:
 		stroke_mat.set_shader_parameter("progress", 1.0)
+		_check_ai_threat_reaction(mark)
 
 
 ## Callback invoked when the board is wiped clean for a new round.
@@ -203,10 +236,63 @@ func _on_vm_board_wiped() -> void:
 			rect.material = null
 	_active_winning_line = []
 	_win_line_progress = 0.0
+	_update_winning_strike_line(0.0)
+	_update_streak_badge()
+	_set_ai_emote(ChalkTheme.TEX_AI_NORMAL, false)
 	if _winning_line_layer != null:
 		_winning_line_layer.queue_redraw()
 	if _result_overlay != null:
 		_result_overlay.visible = false
+
+
+## Returns interpolated strike position along the winning 3-in-a-row path.
+func _get_strike_pos_at(p: float) -> Vector2:
+	if _active_winning_line.size() < 3 or _cell_buttons.is_empty():
+		return Vector2.ZERO
+	var first_idx: int = _active_winning_line[0]
+	var last_idx: int = _active_winning_line[2]
+	if first_idx < 0 or last_idx >= _cell_buttons.size():
+		return Vector2.ZERO
+	var p_start := _cell_buttons[first_idx].position + _cell_buttons[first_idx].size * 0.5
+	var p_end := _cell_buttons[last_idx].position + _cell_buttons[last_idx].size * 0.5
+	return p_start.lerp(p_end, p)
+
+
+## Updates the textured Line2D chalk stroke matching Mark X's exact color and rough chalk brush stroke.
+func _update_winning_strike_line(p: float) -> void:
+	if _active_winning_line.size() < 3 or p <= 0.0:
+		if _chalk_strike_line != null:
+			_chalk_strike_line.points = PackedVector2Array()
+		if _shadow_strike_line != null:
+			_shadow_strike_line.points = PackedVector2Array()
+		return
+	var first_idx: int = _active_winning_line[0]
+	var last_idx: int = _active_winning_line[2]
+	if first_idx < 0 or last_idx >= _cell_buttons.size():
+		return
+
+	var start_cell := _cell_buttons[first_idx]
+	var end_cell := _cell_buttons[last_idx]
+	var p_start := start_cell.position + start_cell.size * 0.5
+	var p_end := end_cell.position + end_cell.size * 0.5
+	var dir := (p_end - p_start).normalized()
+	p_start -= dir * 30.0
+	p_end += dir * 30.0
+
+	var winner_mark: Domain.Mark = _view_model.get_winner_mark() if _view_model != null else Domain.Mark.NONE
+	var line_color := ChalkTheme.CHALK_YELLOW
+	if winner_mark == Domain.Mark.X:
+		line_color = ChalkTheme.CHALK_RED
+	elif winner_mark == Domain.Mark.O:
+		line_color = ChalkTheme.CHALK_BLUE
+
+	var current_end := p_start.lerp(p_end, p)
+
+	if _shadow_strike_line != null:
+		_shadow_strike_line.points = PackedVector2Array([p_start + Vector2(2.0, 3.0), current_end + Vector2(2.0, 3.0)])
+	if _chalk_strike_line != null:
+		_chalk_strike_line.default_color = line_color
+		_chalk_strike_line.points = PackedVector2Array([p_start, current_end])
 
 
 ## Callback invoked when a match ends, allowing the final mark to land, drawing winning chalk line, and smoothly presenting the Result Overlay.
@@ -219,13 +305,22 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 			title_color = ChalkTheme.CHALK_GREEN
 		elif outcome == Domain.Outcome.LOSS and not _view_model.get_config().is_two_player:
 			title_color = ChalkTheme.CHALK_RED
-		_result_title_label.label_settings = ChalkTheme.make_label_settings(44, title_color, true)
+		_result_title_label.label_settings = ChalkTheme.make_label_settings(54, title_color, true)
 
 	if _result_points_label != null:
 		var pts_text := _view_model.get_result_points_text()
 		_result_points_label.text = pts_text
-		_result_points_label.label_settings = ChalkTheme.make_label_settings(28, ChalkTheme.CHALK_DIM, true)
+		_result_points_label.label_settings = ChalkTheme.make_label_settings(32, ChalkTheme.CHALK_DIM, true)
 		_result_points_label.visible = not pts_text.is_empty()
+
+	if not _view_model.get_config().is_two_player:
+		if outcome == Domain.Outcome.WIN:
+			_set_ai_emote(ChalkTheme.TEX_AI_DIZZY, true)
+		elif outcome == Domain.Outcome.LOSS:
+			_set_ai_emote(ChalkTheme.TEX_AI_WIN, true)
+		else:
+			_set_ai_emote(ChalkTheme.TEX_AI_SWEAT, false)
+	_update_streak_badge()
 
 	if animations_enabled and is_inside_tree() and not Engine.is_editor_hint():
 		var tween := create_tween()
@@ -235,11 +330,19 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 		# Step 2: Draw winning chalk strike line if there is a winner
 		if not _active_winning_line.is_empty():
 			_win_line_progress = 0.0
+			var winner_mark: Domain.Mark = _view_model.get_winner_mark() if _view_model != null else Domain.Mark.NONE
+			var last_burst_step: int = -1
 			tween.tween_method(
 				func(p: float) -> void:
 					_win_line_progress = p
+					_update_winning_strike_line(p)
 					if _winning_line_layer != null:
-						_winning_line_layer.queue_redraw(),
+						_winning_line_layer.queue_redraw()
+					var step := int(p * 3.5)
+					if step != last_burst_step and step > 0:
+						last_burst_step = step
+						var strike_pos := _get_strike_pos_at(p)
+						_spawn_chalk_dust_burst(strike_pos, winner_mark),
 				0.0,
 				1.0,
 				0.38
@@ -254,12 +357,13 @@ func _on_vm_match_finished(outcome: Domain.Outcome, winning_line: Array, _points
 		tween.tween_callback(_show_result_overlay)
 	else:
 		_win_line_progress = 1.0
+		_update_winning_strike_line(1.0)
 		if _winning_line_layer != null:
 			_winning_line_layer.queue_redraw()
 		_show_result_overlay()
 
 
-## Displays the Result Overlay modal with a frosted blur backdrop fade and elastic pop-in card animation.
+## Displays the Result Overlay modal with a soft translucent fade and elastic pop-in card animation.
 func _show_result_overlay() -> void:
 	if _result_overlay == null:
 		return
@@ -268,27 +372,48 @@ func _show_result_overlay() -> void:
 		_result_overlay.modulate.a = 0.0
 		if _result_card != null:
 			_result_card.pivot_offset = _result_card.size * 0.5
-			_result_card.scale = Vector2(0.65, 0.65)
+			_result_card.scale = Vector2(0.80, 0.80)
 			_result_card.modulate.a = 0.0
 
 		var tween := create_tween()
-		# Fade in overlay backdrop with frosted glass blur
-		tween.tween_property(_result_overlay, "modulate:a", 1.0, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		# Smooth fade in for the overlay dimmer
+		tween.tween_property(_result_overlay, "modulate:a", 1.0, 0.28).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 		if _result_card != null:
-			# Elastic pop-in bounce for the card
 			var card_tween := create_tween().set_parallel(true)
-			card_tween.tween_property(_result_card, "scale", Vector2.ONE, 0.42).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			card_tween.tween_property(_result_card, "modulate:a", 1.0, 0.28).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-			card_tween.chain().tween_callback(func() -> void:
-				if is_instance_valid(self):
-					_spawn_chalk_dust_burst(_result_card.global_position + _result_card.size * 0.5, Domain.Mark.X)
-			)
+			card_tween.tween_property(_result_card, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			card_tween.tween_property(_result_card, "modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	else:
 		_result_overlay.modulate.a = 1.0
 		if _result_card != null:
 			_result_card.scale = Vector2.ONE
 			_result_card.modulate.a = 1.0
+
+
+## Smoothly fades out the Result Overlay modal ("fade out effect").
+func _hide_result_overlay(on_complete: Callable = Callable()) -> void:
+	if _result_overlay == null or not _result_overlay.visible:
+		if on_complete.is_valid():
+			on_complete.call()
+		return
+	if animations_enabled and is_inside_tree() and not Engine.is_editor_hint():
+		var tween := create_tween().set_parallel(true)
+		tween.tween_property(_result_overlay, "modulate:a", 0.0, 0.20).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		if _result_card != null:
+			tween.tween_property(_result_card, "scale", Vector2(0.85, 0.85), 0.20).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+		tween.chain().tween_callback(func() -> void:
+			if is_instance_valid(self) and _result_overlay != null:
+				_result_overlay.visible = false
+				_result_overlay.modulate.a = 1.0
+				if _result_card != null:
+					_result_card.scale = Vector2.ONE
+			if on_complete.is_valid():
+				on_complete.call()
+		)
+	else:
+		_result_overlay.visible = false
+		if on_complete.is_valid():
+			on_complete.call()
 
 
 ## Schedules or executes the AI turn if the ViewModel is waiting on the AI.
@@ -338,6 +463,87 @@ func _spawn_chalk_dust_burst(local_pos: Vector2, mark: Domain.Mark) -> void:
 	)
 
 
+## Sets the AI reaction face emote texture and plays a subtle emote pop.
+func _set_ai_emote(texture_path: String, wiggle: bool = false) -> void:
+	if _ai_avatar_rect == null or not _ai_avatar_rect.visible:
+		return
+	var tex := load(texture_path) as Texture2D
+	if tex != null:
+		_ai_avatar_rect.texture = tex
+	if wiggle and animations_enabled and is_inside_tree():
+		var tween := create_tween()
+		tween.tween_property(_ai_avatar_rect, "scale", Vector2(1.18, 1.18), 0.08)
+		tween.tween_property(_ai_avatar_rect, "rotation_degrees", -8.0, 0.05)
+		tween.tween_property(_ai_avatar_rect, "rotation_degrees", 8.0, 0.05)
+		tween.tween_property(_ai_avatar_rect, "rotation_degrees", 0.0, 0.05)
+		tween.tween_property(_ai_avatar_rect, "scale", Vector2.ONE, 0.08)
+
+
+## Shakes the board area slightly upon mark placement for a tactile, punchy game feel.
+func _shake_board() -> void:
+	if _board_area == null or not is_inside_tree() or not animations_enabled:
+		return
+	var orig_pos := _board_area.position
+	var tween := create_tween()
+	for i in range(3):
+		var offset := Vector2(randf_range(-3.5, 3.5), randf_range(-2.5, 2.5))
+		tween.tween_property(_board_area, "position", orig_pos + offset, 0.025)
+	tween.tween_property(_board_area, "position", orig_pos, 0.03)
+
+
+## Refreshes the win streak flame badge above the board.
+func _update_streak_badge() -> void:
+	if _streak_badge == null or _view_model == null:
+		return
+	if _view_model.get_config().is_two_player:
+		_streak_badge.visible = false
+		return
+	var streak := _view_model.get_current_streak()
+	if streak >= 2:
+		_streak_badge.visible = true
+		if _streak_label != null:
+			var mult: float = 1.0 + float(streak - 1) * 0.25
+			_streak_label.text = "Chuỗi thắng: %d! (x%.1f)" % [streak, mult]
+			_streak_label.label_settings = ChalkTheme.make_label_settings(24, ChalkTheme.CHALK_YELLOW, true)
+	else:
+		_streak_badge.visible = false
+
+
+## Evaluates board state after a placement and triggers appropriate AI emotional response.
+func _check_ai_threat_reaction(last_placed_mark: Domain.Mark) -> void:
+	if _view_model == null or _view_model.get_config().is_two_player or _view_model.is_game_over():
+		return
+	var board := _view_model.get_board()
+	var human_mark := _view_model.get_config().human_mark
+	var ai_mark := _view_model.get_config().get_ai_mark()
+
+	if last_placed_mark == human_mark:
+		if _board_has_threat(board, human_mark):
+			_set_ai_emote(ChalkTheme.TEX_AI_SWEAT, true)
+		else:
+			_set_ai_emote(ChalkTheme.TEX_AI_NORMAL, false)
+	elif last_placed_mark == ai_mark:
+		if _board_has_threat(board, ai_mark):
+			_set_ai_emote(ChalkTheme.TEX_AI_SMUG, true)
+		else:
+			_set_ai_emote(ChalkTheme.TEX_AI_NORMAL, false)
+
+
+func _board_has_threat(board: Board, mark: Domain.Mark) -> bool:
+	for line in Board.WIN_LINES:
+		var count := 0
+		var empty_count := 0
+		for idx in line:
+			var m := board.cell_at(idx)
+			if m == mark:
+				count += 1
+			elif m == Domain.Mark.NONE:
+				empty_count += 1
+		if count == 2 and empty_count == 1:
+			return true
+	return false
+
+
 ## Custom draw callback for `_winning_line_layer` that renders the hand-drawn chalk strike across the 3 winning cells.
 func _on_draw_winning_line() -> void:
 	if _winning_line_layer == null or _active_winning_line.size() < 3 or _win_line_progress <= 0.0:
@@ -378,13 +584,17 @@ func _init_nodes() -> void:
 			_check_schedule_ai_turn()
 	)
 	_btn_play_again.pressed.connect(func() -> void:
-		if _view_model != null:
-			_view_model.start_new_round(true)
-			_check_schedule_ai_turn()
+		_hide_result_overlay(func() -> void:
+			if _view_model != null:
+				_view_model.start_new_round(true)
+				_check_schedule_ai_turn()
+		)
 	)
 	_btn_result_menu.pressed.connect(func() -> void:
-		if _view_model != null:
-			_view_model.on_back_to_menu_pressed()
+		_hide_result_overlay(func() -> void:
+			if _view_model != null:
+				_view_model.on_back_to_menu_pressed()
+		)
 	)
 
 	if not _winning_line_layer.draw.is_connected(_on_draw_winning_line):
