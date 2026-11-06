@@ -1,7 +1,7 @@
 @tool
-## Difficulty & Mark selection UIFlowPage where the player picks X (First) or O (Second) and selects Easy, Medium, or Hard difficulty.
+## Difficulty & Mark selection view where the player picks X (First) or O (Second) and selects Easy, Medium, or Hard difficulty.
 class_name DifficultyView
-extends UIFlowPage
+extends Control
 
 @onready var _btn_back: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopRow/BtnBack
 @onready var _title_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TitleBanner

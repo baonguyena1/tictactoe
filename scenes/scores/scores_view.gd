@@ -1,7 +1,7 @@
 @tool
-## High Scores & Statistics modal UIFlowPage displaying the trophy laurel, total score, best match score, best streak, and W/D/L breakdown per difficulty.
+## High Scores & Statistics view displaying the trophy laurel, total score, best match score, best streak, and W/D/L breakdown per difficulty.
 class_name ScoresView
-extends UIFlowPage
+extends Control
 
 @onready var _btn_back: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopRow/BtnBack
 @onready var _title_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TitleBanner

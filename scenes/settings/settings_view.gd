@@ -1,7 +1,7 @@
 @tool
-## Settings modal UIFlowPage providing ChalkButtons to toggle Music, SFX, Vibration, Language (Tiếng Việt / English), and Reset Self-Learning AI Memory.
+## Settings view providing ChalkButtons to toggle Music, SFX, Vibration, Language (Tiếng Việt / English), and Reset Self-Learning AI Memory.
 class_name SettingsView
-extends UIFlowPage
+extends Control
 
 @onready var _btn_back: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/TopRow/BtnBack
 @onready var _title_banner: ChalkBanner = $GodotxSafeArea/ContentMargin/MainColumn/TitleBanner

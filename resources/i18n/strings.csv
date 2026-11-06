@@ -36,7 +36,7 @@ GAME_PLAYER_O,Player O,Người chơi O
 GAME_DRAWS,Draws,Hòa
 GAME_YOUR_TURN,IT'S YOUR TURN,LƯỢT CỦA BẠN ({m})
 GAME_AI_THINKING,AI IS THINKING...,MÁY ĐANG NGHĨ...
-GAME_TURN_MARK,{m}'S TURN,LƯỢT CỦA {m}
+GAME_TURN_MARK,{m}'s TURN,LƯỢT CỦA {m}
 GAME_TAP_HINT_CHALK,Tap an empty cell to draw with chalk,Chạm vào ô trống để vẽ phấn
 GAME_TAP_HINT_PAPER,Tap an empty cell to draw with ink,Chạm vào ô trống để vẽ bút mực
 RESULT_MATCH_FINISHED,Match Finished,Kết thúc ván

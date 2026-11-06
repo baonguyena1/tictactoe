@@ -1,7 +1,7 @@
 @tool
-## 3x3 Chalkboard Game UIFlowPage featuring the hand-drawn grid (`board.png`), animated X/O chalk placement with dust bursts, winning line chalk strike, and Result Overlay modal (`win_frame.png` + `trophy_laurel.png`).
+## 3x3 Chalkboard Game view featuring the hand-drawn grid (`board.png`), animated X/O chalk placement with dust bursts, winning line chalk strike, and Result Overlay modal (`win_frame.png` + `trophy_laurel.png`).
 class_name GameView
-extends UIFlowPage
+extends Control
 
 const TEX_MARK_X := "res://resources/textures/mark_x.png"
 const TEX_MARK_O := "res://resources/textures/mark_o.png"

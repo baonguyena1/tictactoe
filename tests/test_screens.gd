@@ -35,7 +35,7 @@ func _make_test_coordinator(screen_container: Control) -> AppCoordinator:
 	coordinator.register_screen_factory(
 		AppCoordinator.ROUTE_GAME,
 		func(_cfg: GameModeConfig) -> Control:
-			var page := UIFlowPage.new()
+			var page := Control.new()
 			page.name = "MockGamePage"
 			return page
 	)

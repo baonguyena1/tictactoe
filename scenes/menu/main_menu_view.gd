@@ -1,7 +1,7 @@
 @tool
-## Main Menu UIFlowPage displaying the chalkboard background, title frame, 4 primary ChalkButtons, and AI skill footer.
+## Main Menu view displaying the chalkboard background, title frame, 4 primary ChalkButtons, and AI skill footer.
 class_name MainMenuView
-extends UIFlowPage
+extends Control
 
 @onready var _btn_play_ai: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnPlayAI
 @onready var _btn_two_players: ChalkButton = $GodotxSafeArea/ContentMargin/MainColumn/BtnTwoPlayers
