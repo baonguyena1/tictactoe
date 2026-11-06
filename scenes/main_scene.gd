@@ -25,6 +25,12 @@ func _ready() -> void:
 	register_default_routes(coordinator, container)
 	container.audio_service.play_music()
 	coordinator.start()
+	call_deferred("_ensure_music_started")
+
+
+func _ensure_music_started() -> void:
+	if container != null and container.audio_service != null:
+		container.audio_service.play_music()
 
 
 ## Registers screen factories for MainMenu, Difficulty, Scores, and Settings (and Game when available) on `p_coordinator`.

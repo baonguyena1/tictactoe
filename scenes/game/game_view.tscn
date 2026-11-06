@@ -119,12 +119,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="BtnMenu" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBar" unique_id=264674686 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(210, 68)
+custom_minimum_size = Vector2(74, 68)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text_key = "BTN_MENU"
 icon_texture = ExtResource("4_iconexit")
-font_size = 26
 
 [node name="TopSpacer" type="Control" parent="GodotxSafeArea/ContentMargin/MainColumn/TopBar" unique_id=1401362678]
 layout_mode = 2
@@ -139,7 +137,9 @@ icon_texture = ExtResource("5_iconreset")
 font_size = 28
 
 [node name="ScoreRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1645827455]
+custom_minimum_size = Vector2(648, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 14
 alignment = 1
 
@@ -256,6 +256,7 @@ text = "Streak: 2! (x1.5)"
 [node name="TurnBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1492335644 instance=ExtResource("6_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 text_key = "GAME_YOUR_TURN"
 

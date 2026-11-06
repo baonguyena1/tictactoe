@@ -59,6 +59,8 @@ func play_board_wipe() -> void:
 func play_tap() -> void:
 	_play_sfx("tap", 0.96, 1.04)
 	_trigger_haptic(10)
+	if _settings.is_music_enabled() and _bgm_player != null and not _bgm_player.playing:
+		_bgm_player.play()
 
 
 ## Plays the end-of-match sound effect for `outcome` (WIN, DRAW, or LOSS).
@@ -83,13 +85,15 @@ func play_win_streak() -> void:
 func _setup_players(host_node: Node) -> void:
 	_bgm_player = AudioStreamPlayer.new()
 	_bgm_player.bus = &"Music" if AudioServer.get_bus_index(&"Music") >= 0 else &"Master"
-	_bgm_player.volume_db = -8.0
+	_bgm_player.volume_db = 0.0
 	var bgm_stream := load(SOUND_BGM) as AudioStreamWAV
 	if bgm_stream != null:
 		bgm_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
-		bgm_stream.loop_begin = 0
-		bgm_stream.loop_end = int(bgm_stream.get_length() * bgm_stream.mix_rate)
 		_bgm_player.stream = bgm_stream
+	_bgm_player.finished.connect(func() -> void:
+		if _settings.is_music_enabled() and _bgm_player != null:
+			_bgm_player.play()
+	)
 	host_node.add_child(_bgm_player)
 
 	var sfx_map := {

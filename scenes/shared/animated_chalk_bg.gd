@@ -29,6 +29,13 @@ func _process(delta: float) -> void:
 		_doodle_layer.queue_redraw()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_RESIZED:
+		if _dust_particles != null:
+			_dust_particles.position = size * 0.5
+			_dust_particles.emission_rect_extents = size * 0.5
+
+
 ## Returns the internal CPUParticles2D node emitting floating chalk dust specks.
 func get_dust_particles() -> CPUParticles2D:
 	_ensure_children()

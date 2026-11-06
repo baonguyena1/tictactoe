@@ -66,6 +66,9 @@ func _on_shown() -> void:
 func on_view_will_appear() -> void:
 	if _view_model != null:
 		_view_model.refresh()
+		var audio := _view_model.get_audio_service()
+		if audio != null:
+			audio.play_music()
 	else:
 		refresh_ui()
 

@@ -9,7 +9,6 @@ MENU_TWO_PLAYERS,Two Players,2 người chơi
 MENU_SCORES,High Scores,Bảng điểm
 MENU_SETTINGS,Settings,Cài đặt
 AI_SKILL_FOOTER,AI Skill Level: {p}%,Trình độ máy học: {p}%
-BTN_BACK,← Back,← Quay lại
 BTN_MENU,← Menu,← Menu
 DIFF_TITLE,Choose Difficulty,Chọn độ khó
 DIFF_YOU_PLAY,You play as,Bạn cầm quân

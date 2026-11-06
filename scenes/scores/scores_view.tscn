@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dxr06kcyr21gn" path="res://scenes/scores/scores_view.gd" id="1_scoresview"]
 [ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="3_chalkbtn"]
-[ext_resource type="Texture2D" uid="uid://xnvcodf7b1u5" path="res://resources/textures/icon_close.png" id="4_iconclose"]
+[ext_resource type="Texture2D" uid="uid://drvn6onnj4eu5" path="res://resources/textures/icon_exit.png" id="4_iconexit"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://dxsd035ogtk5l" path="res://resources/textures/trophy_laurel.png" id="6_trophylaurel"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="7_safearea"]
@@ -176,40 +176,37 @@ theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 20
 
 [node name="MainColumn" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin" unique_id=559667824]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="TopRow" type="HBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1140671186]
 layout_mode = 2
 
 [node name="BtnBack" parent="GodotxSafeArea/ContentMargin/MainColumn/TopRow" unique_id=766717797 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(210, 68)
+custom_minimum_size = Vector2(74, 68)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text_key = "BTN_BACK"
-icon_texture = ExtResource("4_iconclose")
-font_size = 26
+icon_texture = ExtResource("4_iconexit")
 
 [node name="TitleBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=2049336187 instance=ExtResource("5_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 text_key = "SCORES_TITLE"
 
 [node name="TrophyRect" type="TextureRect" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1442731436]
 custom_minimum_size = Vector2(240, 80)
 layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("6_trophylaurel")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="SummaryCard" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1010101]
+custom_minimum_size = Vector2(648, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_summary")
 
 [node name="SummaryBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/SummaryCard" unique_id=1537419970]
@@ -269,7 +266,9 @@ text = "SCORES_BY_DIFF"
 horizontal_alignment = 1
 
 [node name="TableBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=312186547]
+custom_minimum_size = Vector2(648, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 12
 
 [node name="CardEasy" type="PanelContainer" parent="GodotxSafeArea/ContentMargin/MainColumn/TableBox" unique_id=201]

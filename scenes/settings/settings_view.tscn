@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bfjt305h5p4bd" path="res://scenes/settings/settings_view.gd" id="1_settingsview"]
 [ext_resource type="PackedScene" path="res://scenes/shared/animated_chalk_bg.tscn" id="2_chalkbg"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_button.tscn" id="3_chalkbtn"]
-[ext_resource type="Texture2D" uid="uid://xnvcodf7b1u5" path="res://resources/textures/icon_close.png" id="4_iconclose"]
+[ext_resource type="Texture2D" uid="uid://drvn6onnj4eu5" path="res://resources/textures/icon_exit.png" id="4_iconexit"]
 [ext_resource type="PackedScene" path="res://scenes/shared/chalk_banner.tscn" id="5_chalkbanner"]
 [ext_resource type="Texture2D" uid="uid://bwxguggdujde8" path="res://resources/textures/icon_reset.png" id="6_iconreset"]
 [ext_resource type="Script" uid="uid://bkdccw42rxppu" path="res://addons/godotx_safe_area/godotx_safe_area.gd" id="7_safearea"]
@@ -64,21 +64,22 @@ theme_override_constants/separation = 18
 layout_mode = 2
 
 [node name="BtnBack" parent="GodotxSafeArea/ContentMargin/MainColumn/TopRow" unique_id=1405164018 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(210, 68)
+custom_minimum_size = Vector2(74, 68)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text_key = "BTN_BACK"
-icon_texture = ExtResource("4_iconclose")
-font_size = 26
+icon_texture = ExtResource("4_iconexit")
 
 [node name="TitleBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=622035976 instance=ExtResource("5_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 text_key = "SET_TITLE"
 
 [node name="OptionsBox" type="VBoxContainer" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=635648326]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 alignment = 1

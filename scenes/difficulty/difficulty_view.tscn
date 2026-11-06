@@ -64,16 +64,15 @@ theme_override_constants/separation = 10
 layout_mode = 2
 
 [node name="BtnBack" parent="GodotxSafeArea/ContentMargin/MainColumn/TopRow" unique_id=1086013897 instance=ExtResource("3_chalkbtn")]
-custom_minimum_size = Vector2(210, 68)
+custom_minimum_size = Vector2(74, 68)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text_key = "BTN_BACK"
 icon_texture = ExtResource("4_iconexit")
-font_size = 26
 
 [node name="TitleBanner" parent="GodotxSafeArea/ContentMargin/MainColumn" unique_id=1197238237 instance=ExtResource("5_chalkbanner")]
 custom_minimum_size = Vector2(520, 74)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 2
 text_key = "DIFF_TITLE"
 
