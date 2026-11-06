@@ -35,7 +35,7 @@ func set_haptics_enabled(_enabled: bool) -> void:
 
 ## Returns the active language locale code ("vi" or "en").
 func get_locale() -> String:
-	return "vi"
+	return "en"
 
 
 ## Updates and persists the active language locale code ("vi" or "en").

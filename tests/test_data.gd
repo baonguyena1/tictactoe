@@ -27,7 +27,7 @@ func _cleanup_test_files() -> void:
 func test_local_settings_persistence_and_locale() -> void:
 	var repo1 := LocalSettingsRepository.new(TEST_SETTINGS_PATH)
 	assert_true(repo1.is_music_enabled(), "Default music_enabled is true")
-	assert_eq(repo1.get_locale(), "vi", "Default locale is vi")
+	assert_eq(repo1.get_locale(), LocalSettingsRepository.get_device_default_locale(), "Default locale matches device")
 
 	repo1.set_music_enabled(false)
 	repo1.set_sfx_enabled(false)

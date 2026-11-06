@@ -20,7 +20,9 @@ config/icon="res://icon.png"
 
 [audio]
 
+buses/default_bus_layout="res://default_bus_layout.tres"
 general/ios/session_category=3
+general/ios/mix_with_others=true
 
 [display]
 
@@ -42,6 +44,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
+locale/fallback="en"
 locale/translations=PackedStringArray("res://resources/i18n/strings.en.translation", "res://resources/i18n/strings.vi.translation")
 
 [physics]

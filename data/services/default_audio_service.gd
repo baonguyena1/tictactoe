@@ -89,11 +89,9 @@ func _setup_players(host_node: Node) -> void:
 	var bgm_stream := load(SOUND_BGM) as AudioStreamWAV
 	if bgm_stream != null:
 		bgm_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		bgm_stream.loop_begin = 0
+		bgm_stream.loop_end = int(bgm_stream.get_length() * bgm_stream.mix_rate)
 		_bgm_player.stream = bgm_stream
-	_bgm_player.finished.connect(func() -> void:
-		if _settings.is_music_enabled() and _bgm_player != null:
-			_bgm_player.play()
-	)
 	host_node.add_child(_bgm_player)
 
 	var sfx_map := {
